@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop — Femora Co. Research Compounds</title>
+<meta name="description" content="Browse Femora Co.'s full collection of independently verified research compounds. GLP-3 RT, GLP-2 TIRZ, GLOW, BAC Water. Third-party tested. Research use only.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://femoracо.com/shop.html">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FDFAF6;--white:#FFFFFF;--blush:#F7E8EC;--rose:#E8A0B0;
+  --rose-deep:#C97088;--gold:#C8A96E;--gold-light:#EDD9A3;--gold-pale:#FAF3E0;
+  --ink:#2A1F24;--ink-light:#5C4A52;--ink-faint:#9A8A90;
+  --border:#EBD9DF;--border-gold:rgba(200,169,110,0.3);
+  --warn:#D4907A;--success:#7BBFA0;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);}
+a{text-decoration:none;color:inherit;}
+/* NAV */
+nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 3rem;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:900;}
+.nav-brand-name{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;color:var(--ink);}
+.nav-center{display:flex;gap:2.5rem;}
+.nav-center a{font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);transition:color 0.2s;}
+.nav-center a:hover{color:var(--rose-deep);}
+.cart-pill{display:flex;align-items:center;gap:0.6rem;background:var(--ink);color:white;padding:0.55rem 1.3rem;border-radius:50px;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;font-family:'Jost',sans-serif;transition:all 0.25s;}
+.cart-pill:hover{background:var(--rose-deep);}
+.cart-badge{background:var(--rose);color:var(--ink);border-radius:50px;padding:1px 7px;font-size:0.7rem;font-weight:700;}
+
+/* SHOP HERO */
+.shop-hero{background:var(--blush);padding:4rem 5rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.shop-hero-label{font-size:0.68rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:0.8rem;}
+.shop-hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,4vw,4rem);font-weight:700;color:var(--ink);line-height:1.1;}
+.shop-hero-body{font-size:0.9rem;color:var(--ink-light);line-height:1.85;font-weight:300;margin-top:1rem;max-width:420px;}
+.shop-hero-right{display:flex;flex-direction:column;gap:0.8rem;}
+.mini-stat{background:white;border-radius:14px;padding:1.2rem 1.5rem;border:1px solid var(--border);display:flex;align-items:center;gap:1.2rem;}
+.mini-stat-num{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--rose-deep);min-width:70px;}
+.mini-stat-label{font-size:0.78rem;color:var(--ink-light);line-height:1.5;font-weight:400;}
+
+/* CAROUSEL / FEATURED SPOTLIGHT */
+.spotlight-section{background:var(--ink);padding:0;overflow:hidden;position:relative;}
+.carousel-section{position:relative;height:500vh;}
+.carousel-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--ink);}
+.carousel-bg-text{position:absolute;font-family:'Playfair Display',serif;font-size:20rem;font-weight:700;color:rgba(255,255,255,0.02);pointer-events:none;white-space:nowrap;letter-spacing:-0.05em;top:50%;transform:translateY(-50%);font-style:italic;}
+.carousel-slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;pointer-events:none;z-index:1;}
+.carousel-slide.active{opacity:1;transform:translateY(0);pointer-events:all;}
+.carousel-slide.exiting{opacity:0;transform:translateY(-20px);}
+.slide-inner{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;max-width:1100px;width:100%;padding:0 5rem;}
+.slide-visual{border-radius:20px;overflow:hidden;background:linear-gradient(135deg,var(--blush),var(--gold-pale));aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:10rem;position:relative;}
+.slide-visual img{width:100%;height:100%;object-fit:cover;}
+.slide-num-tag{position:absolute;top:1.2rem;right:1.4rem;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);background:rgba(0,0,0,0.3);padding:0.3rem 0.7rem;border-radius:50px;}
+.slide-text{}
+.slide-label{font-size:0.66rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--rose);margin-bottom:1rem;}
+.slide-name{font-family:'Playfair Display',serif;font-size:clamp(3rem,5vw,5rem);color:white;font-weight:700;line-height:1.0;margin-bottom:1rem;}
+.slide-desc{font-size:0.9rem;color:rgba(255,255,255,0.5);line-height:1.85;max-width:380px;margin-bottom:1rem;font-weight:300;}
+.slide-price{font-family:'Playfair Display',serif;font-size:2rem;color:white;font-weight:700;margin-bottom:0.5rem;}
+.slide-stock{font-size:0.75rem;font-weight:600;margin-bottom:2rem;display:flex;align-items:center;gap:0.4rem;}
+.slide-stock.ok{color:var(--success);}.slide-stock.ok::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--success);}
+.slide-stock.low{color:var(--warn);}.slide-stock.low::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--warn);}
+.slide-stock.out{color:#E09090;}
+.slide-actions{display:flex;gap:0.8rem;flex-wrap:wrap;}
+.slide-view-btn{background:transparent;color:rgba(255,255,255,0.6);padding:0.85rem 1.5rem;border-radius:50px;border:1.5px solid rgba(255,255,255,0.2);font-weight:500;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s;font-family:'Jost',sans-serif;cursor:pointer;}
+.slide-view-btn:hover{border-color:var(--rose);color:var(--rose);}
+.slide-atc-btn{background:var(--rose-deep);color:white;padding:0.85rem 1.8rem;border-radius:50px;border:none;font-weight:600;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s;font-family:'Jost',sans-serif;cursor:pointer;}
+.slide-atc-btn:hover{background:var(--gold);color:var(--ink);}
+.slide-atc-btn:disabled{background:var(--ink-faint);cursor:not-allowed;}
+.carousel-dots{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;gap:0.6rem;z-index:10;}
+.carousel-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.2);cursor:pointer;border:none;transition:all 0.3s;}
+.carousel-dot.active{background:var(--rose);width:24px;border-radius:3px;}
+.scroll-hint{position:absolute;bottom:4rem;right:3rem;display:flex;flex-direction:column;align-items:center;gap:0.4rem;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);z-index:10;transition:opacity 0.5s;}
+.scroll-arrow{width:16px;height:16px;border-right:1.5px solid rgba(255,255,255,0.2);border-bottom:1.5px solid rgba(255,255,255,0.2);transform:rotate(45deg);animation:bounce 1.5s infinite;}
+@keyframes bounce{0%,100%{transform:rotate(45deg) translateY(0);}50%{transform:rotate(45deg) translateY(4px);}}
+
+/* GRID SECTION */
+.grid-section{padding:5rem;background:var(--white);}
+.grid-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:1rem;}
+.grid-label{font-size:0.68rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:0.4rem;}
+.grid-title{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--ink);}
+.filter-row{display:flex;gap:0.6rem;margin-bottom:2.5rem;flex-wrap:wrap;}
+.filter-btn{padding:0.45rem 1.2rem;border-radius:50px;border:1.5px solid var(--border);background:transparent;font-family:'Jost',sans-serif;font-size:0.74rem;font-weight:600;cursor:pointer;transition:all 0.2s;color:var(--ink-light);letter-spacing:0.08em;text-transform:uppercase;}
+.filter-btn.active,.filter-btn:hover{background:var(--rose-deep);color:white;border-color:var(--rose-deep);}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.8rem;}
+.product-card{background:var(--cream);border:1px solid var(--border);border-radius:20px;overflow:hidden;cursor:pointer;transition:all 0.3s;}
+.product-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(42,31,36,0.08);border-color:var(--border-gold);}
+.product-card.out-of-stock{opacity:0.5;cursor:default;pointer-events:none;}
+.product-img{height:210px;background:linear-gradient(135deg,var(--blush),var(--gold-pale));display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;overflow:hidden;}
+.product-img img{width:100%;height:100%;object-fit:cover;}
+.badge-oos{position:absolute;top:12px;left:12px;background:rgba(42,31,36,0.7);color:white;font-size:0.62rem;padding:0.28rem 0.8rem;border-radius:50px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;}
+.badge-low{position:absolute;top:12px;left:12px;background:var(--warn);color:white;font-size:0.62rem;padding:0.28rem 0.8rem;border-radius:50px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
+.product-body{padding:1.3rem;}
+.product-cat{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:0.35rem;font-weight:600;}
+.product-name{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:0.3rem;}
+.product-desc{font-size:0.76rem;color:var(--ink-faint);line-height:1.6;margin-bottom:0.9rem;font-weight:300;}
+.product-footer{display:flex;align-items:center;justify-content:space-between;}
+.product-price{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--ink);}
+.product-stock-lbl{font-size:0.65rem;color:var(--ink-faint);margin-top:1px;}
+.atc-btn{background:var(--rose-deep);color:white;border:none;padding:0.5rem 1.1rem;border-radius:50px;font-size:0.7rem;font-weight:600;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.06em;transition:all 0.2s;}
+.atc-btn:hover{background:var(--ink);}
+
+/* UTILS */
+.loading-spinner{display:flex;align-items:center;justify-content:center;padding:4rem;color:var(--ink-faint);gap:0.8rem;font-size:0.85rem;}
+.spinner{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--rose-deep);border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:9999;background:var(--ink);color:white;border:1px solid rgba(255,255,255,0.1);padding:1rem 1.5rem;border-radius:12px;font-size:0.84rem;font-weight:500;opacity:0;transform:translateY(12px);transition:all 0.3s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateY(0);}
+.age-gate-overlay{position:fixed;inset:0;z-index:99999;background:rgba(253,250,246,0.96);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(12px);}
+.age-gate-overlay.hidden{opacity:0;pointer-events:none;transition:opacity 0.4s;}
+.age-gate-box{background:white;border:1px solid var(--border);border-radius:24px;padding:3.5rem 3rem;max-width:460px;width:90%;text-align:center;box-shadow:0 32px 80px rgba(42,31,36,0.12);}
+.age-gate-brand{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--ink);}
+.age-gate-brand span{color:var(--rose-deep);font-style:italic;}
+.age-gate-sub{font-size:0.85rem;color:var(--ink-faint);line-height:1.75;margin:1.2rem 0 2rem;font-weight:300;}
+.age-gate-actions{display:flex;gap:1rem;}
+.age-gate-yes{flex:1;background:var(--rose-deep);color:white;padding:0.95rem;border:none;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-no{flex:1;background:transparent;color:var(--ink-faint);padding:0.95rem;border:1.5px solid var(--border);border-radius:50px;font-size:0.82rem;font-weight:500;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-disclaimer{font-size:0.68rem;color:var(--ink-faint);margin-top:1.5rem;line-height:1.65;opacity:0.7;}
+footer{background:var(--ink);color:rgba(255,255,255,0.45);padding:3rem 5rem 2rem;}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1.4rem;color:white;font-weight:700;}
+.footer-links{display:flex;gap:2rem;flex-wrap:wrap;}
+.footer-links a{font-size:0.78rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}
+.footer-links a:hover{color:var(--rose);}
+.footer-copy{font-size:0.72rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.08);}
+@media(max-width:900px){nav{padding:0 1.5rem;}.nav-center{display:none;}.shop-hero{grid-template-columns:1fr;padding:3rem 1.5rem;}.carousel-slide .slide-inner{grid-template-columns:1fr;gap:2rem;padding:0 1.5rem;text-align:center;}.slide-visual{max-width:260px;margin:0 auto;font-size:6rem;}.slide-name{font-size:3rem;}.slide-actions{justify-content:center;}.grid-section{padding:3rem 1.5rem;}footer{padding:2rem 1.5rem;}}
+</style>
+</head>
+<body>
+<div class="age-gate-overlay" id="age-gate">
+  <div class="age-gate-box">
+    <div class="age-gate-brand">Femora <span>Co.</span></div>
+    <p class="age-gate-sub">This site contains products intended for adults. You must be 21 or older to enter.</p>
+    <div class="age-gate-actions">
+      <button class="age-gate-yes" onclick="ageGateConfirm()">Yes, I'm 21+</button>
+      <button class="age-gate-no" onclick="ageGateDeny()">Exit</button>
+    </div>
+    <p class="age-gate-disclaimer">By entering you confirm your age and agree to our terms. Products are for research use only.</p>
+  </div>
+</div>
+<nav>
+  <div class="nav-brand-name">Femora Co.</div>
+  <div class="nav-center">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="coa.html">Lab Results</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="faq.html">FAQ</a>
+  </div>
+  <button class="cart-pill" onclick="window.location='cart.html'">🛍 Cart <span class="cart-badge" id="cart-count">0</span></button>
+</nav>
+
+<div class="shop-hero">
+  <div>
+    <div class="shop-hero-label">The Collection</div>
+    <h1 class="shop-hero-title">Every compound.<br>Every certificate.</h1>
+    <p class="shop-hero-body">Each product below comes with a full Certificate of Analysis from an independent lab. Scroll through our featured spotlight or jump to the full grid below.</p>
+  </div>
+  <div class="shop-hero-right">
+    <div class="mini-stat"><div class="mini-stat-num">99%+</div><div class="mini-stat-label">Minimum purity verified<br>by independent labs</div></div>
+    <div class="mini-stat"><div class="mini-stat-num">24hr</div><div class="mini-stat-label">Order fulfillment<br>after payment clears</div></div>
+    <div class="mini-stat"><div class="mini-stat-num">100%</div><div class="mini-stat-label">Satisfaction guarantee<br>on every order</div></div>
+  </div>
+</div>
+
+<!-- SCROLL CAROUSEL -->
+<div class="carousel-section" id="carousel-section">
+  <div class="carousel-sticky" id="carousel-sticky">
+    <div class="carousel-bg-text" id="carousel-bg-text">Femora Co.</div>
+    <div id="slides-container"></div>
+    <div class="carousel-dots" id="carousel-dots"></div>
+    <div class="scroll-hint" id="scroll-hint"><span>Scroll</span><div class="scroll-arrow"></div></div>
+  </div>
+</div>
+
+<!-- FULL GRID -->
+<div class="grid-section">
+  <div class="grid-top">
+    <div>
+      <div class="grid-label">Full Catalog</div>
+      <div class="grid-title">All Products</div>
+    </div>
+  </div>
+  <div class="filter-row">
+    <button class="filter-btn active" onclick="filterProducts('All',this)">All</button>
+    <button class="filter-btn" onclick="filterProducts('GLPs',this)">GLPs</button>
+    <button class="filter-btn" onclick="filterProducts('Skincare',this)">Skincare</button>
+    <button class="filter-btn" onclick="filterProducts('BAC',this)">BAC</button>
+    <button class="filter-btn" onclick="filterProducts('Other',this)">Other</button>
+  </div>
+  <div class="product-grid" id="shop-grid"><div class="loading-spinner"><div class="spinner"></div>Loading products...</div></div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Femora Co.</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="coa.html">Lab Results</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="faq.html">FAQ</a>
+      <a href="cart.html">Cart</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2025 Femora Co.. All rights reserved. For research use only.</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="db.js"></script>
+<script src="chatbot.js"></script>
+<script>
+initAgeGate();
+updateCartCount();
+var allProducts=[],carouselItems=[],currentSlide=0,isTransitioning=false;
+
+getProducts(function(products){
+  allProducts=products;
+  getCarouselIds(function(ids){
+    if(ids&&ids.length) carouselItems=ids.map(function(id){return products.find(function(p){return p.id==id;});}).filter(Boolean);
+    if(!carouselItems.length) carouselItems=products.slice(0,4);
+    buildCarousel();
+    renderShop();
+  });
+});
+
+function buildCarousel(){
+  var container=document.getElementById('slides-container');
+  var dots=document.getElementById('carousel-dots');
+  container.innerHTML='';dots.innerHTML='';
+  carouselItems.forEach(function(p,idx){
+    var oos=(p.stock||0)<=0,low=p.stock>0&&p.stock<=3;
+    var sc=oos?'out':low?'low':'ok';
+    var st=oos?'Out of stock':low?'Only '+p.stock+' left':(p.stock||0)+' in stock';
+    var vis=(p.image&&p.image.trim())?'<img src="'+p.image+'" alt="'+p.name+'" style="width:100%;height:100%;object-fit:cover;">':'<span>'+p.emoji+'</span>';
+    var slide=document.createElement('div');
+    slide.className='carousel-slide'+(idx===0?' active':'');
+    slide.innerHTML='<div class="slide-inner"><div class="slide-visual"><div class="slide-num-tag">'+String(idx+1).padStart(2,'0')+' / '+String(carouselItems.length).padStart(2,'0')+'</div>'+vis+'</div>'
+      +'<div class="slide-text"><div class="slide-label">Lab Verified Compound</div>'
+      +'<h2 class="slide-name">'+p.name+'</h2>'
+      +'<p class="slide-desc">'+p.desc+'</p>'
+      +'<div class="slide-price">$'+Number(p.price).toFixed(2)+'</div>'
+      +'<div class="slide-stock '+sc+'">'+st+'</div>'
+      +'<div class="slide-actions"><button class="slide-view-btn" onclick="window.location=\'product.html?id='+p.id+'\'">View Details</button>'
+      +(oos?'':'<button class="slide-atc-btn" onclick="addToCart('+p.id+',\''+p.name.replace(/'/g,"\\'")+'\','+p.price+',\''+p.emoji+'\',\''+(p.image||'').replace(/'/g,"\\'")+'\','+(p.stock||0)+')">Add to Cart</button>')
+      +'</div></div></div>';
+    container.appendChild(slide);
+    var dot=document.createElement('button');
+    dot.className='carousel-dot'+(idx===0?' active':'');
+    dot.onclick=(function(i){return function(){goToSlide(i);};})(idx);
+    dots.appendChild(dot);
+  });
+}
+function goToSlide(idx){
+  if(isTransitioning||idx===currentSlide)return;
+  isTransitioning=true;
+  var slides=document.querySelectorAll('.carousel-slide');
+  var dotEls=document.querySelectorAll('.carousel-dot');
+  slides[currentSlide].classList.add('exiting');slides[currentSlide].classList.remove('active');
+  var prev=currentSlide;currentSlide=idx;
+  setTimeout(function(){slides[prev].classList.remove('exiting');slides[currentSlide].classList.add('active');dotEls.forEach(function(d,i){d.classList.toggle('active',i===currentSlide);});isTransitioning=false;},350);
+}
+window.addEventListener('scroll',function(){
+  var section=document.getElementById('carousel-section');
+  if(!section||!carouselItems.length)return;
+  var rect=section.getBoundingClientRect();
+  var progress=Math.max(0,Math.min(1,-rect.top/(rect.height-window.innerHeight)));
+  var target=Math.min(carouselItems.length-1,Math.floor(progress*carouselItems.length));
+  document.getElementById('scroll-hint').style.opacity=-rect.top>50?'0':'1';
+  if(target!==currentSlide)goToSlide(target);
+},{passive:true});
+
+var currentFilter='All';
+function filterProducts(cat,btn){
+  currentFilter=cat;
+  document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  renderShop();
+}
+function renderShop(){
+  var filtered=currentFilter==='All'?allProducts:allProducts.filter(function(p){return p.category===currentFilter;});
+  var grid=document.getElementById('shop-grid');
+  if(!filtered.length){grid.innerHTML='<div style="color:var(--ink-faint);padding:2rem;">No products in this category.</div>';return;}
+  var html='';
+  filtered.forEach(function(p){
+    var oos=(p.stock||0)<=0,low=p.stock>0&&p.stock<=3;
+    var vis=(p.image&&p.image.trim())
+      ?'<img src="'+p.image+'" alt="'+p.name+'" style="width:100%;height:210px;object-fit:cover;" onerror="this.style.display=\'none\';this.nextSibling.style.display=\'flex\';">'
+        +'<div style="display:none;width:100%;height:210px;align-items:center;justify-content:center;font-size:4rem;">'+p.emoji+'</div>'
+      :p.emoji;
+    html+='<div class="product-card'+(oos?' out-of-stock':'')+'" onclick="'+(oos?'':'window.location=\'product.html?id='+p.id+'\'')+'">';
+    html+='<div class="product-img">'+vis;
+    if(oos)html+='<div class="badge-oos">Out of Stock</div>';
+    else if(low)html+='<div class="badge-low">Only '+p.stock+' left</div>';
+    html+='</div><div class="product-body"><div class="product-cat">'+p.category+'</div>';
+    html+='<div class="product-name">'+p.name+'</div><div class="product-desc">'+p.desc+'</div>';
+    html+='<div class="product-footer"><div><div class="product-price">$'+Number(p.price).toFixed(2)+'</div>';
+    html+='<div class="product-stock-lbl">'+(oos?'Out of stock':(p.stock||0)+' in stock')+'</div></div>';
+    if(!oos)html+='<button class="atc-btn" onclick="event.stopPropagation();addToCart('+p.id+',\''+p.name.replace(/'/g,"\\'")+'\','+p.price+',\''+p.emoji+'\',\''+(p.image||'').replace(/'/g,"\\'")+'\','+(p.stock||0)+')">Add to Cart</button>';
+    html+='</div></div></div>';
+  });
+  grid.innerHTML=html;
+}
+</script>
+</body>
+</html>

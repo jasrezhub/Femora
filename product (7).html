@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product — Femora Co.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FDFAF6;--white:#FFFFFF;--blush:#F7E8EC;--rose:#E8A0B0;
+  --rose-deep:#C97088;--gold:#C8A96E;--gold-light:#EDD9A3;--gold-pale:#FAF3E0;
+  --ink:#2A1F24;--ink-light:#5C4A52;--ink-faint:#9A8A90;
+  --border:#EBD9DF;--border-gold:rgba(200,169,110,0.3);
+  --success:#7BBFA0;--warn:#D4907A;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);}
+a{text-decoration:none;color:inherit;}
+nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 3rem;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:900;}
+.nav-brand-name{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;color:var(--ink);}
+.nav-center{display:flex;gap:2.5rem;}
+.nav-center a{font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);transition:color 0.2s;}
+.nav-center a:hover{color:var(--rose-deep);}
+.cart-pill{display:flex;align-items:center;gap:0.6rem;background:var(--ink);color:white;padding:0.55rem 1.3rem;border-radius:50px;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;font-family:'Jost',sans-serif;transition:all 0.25s;}
+.cart-pill:hover{background:var(--rose-deep);}
+.cart-badge{background:var(--rose);color:var(--ink);border-radius:50px;padding:1px 7px;font-size:0.7rem;font-weight:700;}
+
+.breadcrumb{padding:1.5rem 5rem;font-size:0.76rem;color:var(--ink-faint);display:flex;align-items:center;gap:0.5rem;}
+.breadcrumb a{color:var(--rose-deep);}
+.breadcrumb a:hover{text-decoration:underline;}
+.breadcrumb-sep{opacity:0.4;}
+
+.product-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:1400px;margin:0 auto;}
+.gallery-col{background:var(--blush);padding:4rem;display:flex;flex-direction:column;gap:1rem;min-height:70vh;}
+.gallery-main{border-radius:20px;overflow:hidden;background:linear-gradient(135deg,rgba(247,232,236,0.6),rgba(250,243,224,0.6));aspect-ratio:1;position:relative;display:flex;align-items:center;justify-content:center;font-size:12rem;}
+.gallery-main img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity 0.3s;}
+.gallery-arrows{position:absolute;top:50%;transform:translateY(-50%);left:0;right:0;display:flex;justify-content:space-between;padding:0 1rem;}
+.gallery-arrow{width:38px;height:38px;border-radius:50%;background:white;border:1px solid var(--border);color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all 0.2s;}
+.gallery-arrow:hover{background:var(--rose-deep);color:white;border-color:var(--rose-deep);}
+.gallery-arrow.hidden{opacity:0;pointer-events:none;}
+.gallery-dots{display:flex;gap:0.5rem;justify-content:center;position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);}
+.gallery-dot{width:6px;height:6px;border-radius:50%;background:rgba(42,31,36,0.2);cursor:pointer;border:none;transition:all 0.2s;padding:0;}
+.gallery-dot.active{background:var(--rose-deep);width:20px;border-radius:3px;}
+.gallery-thumbs{display:flex;gap:0.75rem;}
+.gallery-thumb{width:76px;height:76px;border-radius:12px;overflow:hidden;border:2px solid transparent;cursor:pointer;transition:all 0.2s;background:white;display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0;}
+.gallery-thumb:hover,.gallery-thumb.active{border-color:var(--rose-deep);}
+.gallery-thumb img{width:100%;height:100%;object-fit:cover;}
+
+.info-col{background:var(--white);padding:4rem;display:flex;flex-direction:column;justify-content:center;}
+.product-cat{font-size:0.66rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:0.8rem;font-weight:600;display:flex;align-items:center;gap:0.5rem;}
+.product-cat::before{content:'';display:block;width:14px;height:1px;background:var(--rose-deep);}
+.product-name{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,3.5vw,3.2rem);line-height:1.05;color:var(--ink);margin-bottom:0.8rem;font-weight:700;}
+.product-price{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--ink);margin-bottom:1rem;}
+.stock-pill{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.78rem;font-weight:600;padding:0.45rem 1rem;border-radius:50px;margin-bottom:1.5rem;}
+.stock-pill.ok{background:rgba(123,191,160,0.12);color:var(--success);}
+.stock-pill.ok::before{content:'';display:block;width:7px;height:7px;border-radius:50%;background:var(--success);}
+.stock-pill.low{background:rgba(212,144,122,0.12);color:var(--warn);}
+.stock-pill.low::before{content:'';display:block;width:7px;height:7px;border-radius:50%;background:var(--warn);}
+.stock-pill.out{background:rgba(200,120,120,0.1);color:#C07070;}
+.divider{border:none;border-top:1px solid var(--border);margin:1.2rem 0;}
+.product-desc{font-size:0.9rem;color:var(--ink-light);line-height:1.9;margin-bottom:1.5rem;font-weight:300;}
+.spec-list{background:var(--cream);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:2rem;}
+.spec-row{display:flex;justify-content:space-between;align-items:center;padding:0.8rem 1.2rem;border-bottom:1px solid var(--border);font-size:0.85rem;}
+.spec-row:last-child{border-bottom:none;}
+.spec-row span:first-child{color:var(--ink-faint);font-weight:400;}
+.spec-row span:last-child{font-weight:600;color:var(--ink);}
+.qty-wrap{margin-bottom:1.5rem;}
+.qty-label{font-size:0.68rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:0.6rem;}
+.qty-controls{display:inline-flex;align-items:center;border:1.5px solid var(--border);border-radius:50px;overflow:hidden;}
+.qty-btn{width:44px;height:44px;background:transparent;border:none;font-size:1.3rem;cursor:pointer;color:var(--ink);transition:background 0.15s;display:flex;align-items:center;justify-content:center;}
+.qty-btn:hover{background:var(--blush);}
+.qty-num{width:52px;text-align:center;font-size:1rem;font-weight:600;color:var(--ink);}
+.cta-row{display:flex;gap:1rem;flex-wrap:wrap;}
+.atc-btn-lg{flex:1;min-width:180px;background:var(--rose-deep);color:white;padding:1rem 1.5rem;border-radius:50px;border:none;font-weight:700;font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;transition:all 0.2s;}
+.atc-btn-lg:hover{background:var(--ink);transform:translateY(-2px);}
+.atc-btn-lg:disabled{background:var(--border);color:var(--ink-faint);cursor:not-allowed;transform:none;}
+.back-btn{background:transparent;color:var(--ink-faint);padding:1rem 1.2rem;border-radius:50px;border:1.5px solid var(--border);font-weight:500;font-size:0.8rem;cursor:pointer;font-family:'Jost',sans-serif;transition:all 0.2s;white-space:nowrap;}
+.back-btn:hover{border-color:var(--ink);color:var(--ink);}
+.not-found{text-align:center;padding:8rem 2rem;color:var(--ink-faint);}
+.not-found h2{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--ink);margin-bottom:1rem;font-weight:700;}
+.loading-spinner{display:flex;align-items:center;justify-content:center;padding:8rem;color:var(--ink-faint);gap:0.8rem;font-size:0.85rem;}
+.spinner{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--rose-deep);border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:9999;background:var(--ink);color:white;border:1px solid rgba(255,255,255,0.1);padding:1rem 1.5rem;border-radius:12px;font-size:0.84rem;font-weight:500;opacity:0;transform:translateY(12px);transition:all 0.3s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateY(0);}
+.age-gate-overlay{position:fixed;inset:0;z-index:99999;background:rgba(253,250,246,0.96);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(12px);}
+.age-gate-overlay.hidden{opacity:0;pointer-events:none;transition:opacity 0.4s;}
+.age-gate-box{background:white;border:1px solid var(--border);border-radius:24px;padding:3.5rem 3rem;max-width:460px;width:90%;text-align:center;box-shadow:0 32px 80px rgba(42,31,36,0.12);}
+.age-gate-brand{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--ink);}
+.age-gate-brand span{color:var(--rose-deep);font-style:italic;}
+.age-gate-sub{font-size:0.85rem;color:var(--ink-faint);line-height:1.75;margin:1.2rem 0 2rem;font-weight:300;}
+.age-gate-actions{display:flex;gap:1rem;}
+.age-gate-yes{flex:1;background:var(--rose-deep);color:white;padding:0.95rem;border:none;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-no{flex:1;background:transparent;color:var(--ink-faint);padding:0.95rem;border:1.5px solid var(--border);border-radius:50px;font-size:0.82rem;font-weight:500;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-disclaimer{font-size:0.68rem;color:var(--ink-faint);margin-top:1.5rem;line-height:1.65;opacity:0.7;}
+@media(max-width:900px){nav{padding:0 1.5rem;}.nav-center{display:none;}.product-wrap{grid-template-columns:1fr;}.gallery-col,.info-col{padding:2rem 1.5rem;}.breadcrumb{padding:1rem 1.5rem;}}
+</style>
+</head>
+<body>
+<div class="age-gate-overlay" id="age-gate">
+  <div class="age-gate-box">
+    <div class="age-gate-brand">Femora <span>Co.</span></div>
+    <p class="age-gate-sub">This site contains products intended for adults. You must be 21 or older to enter.</p>
+    <div class="age-gate-actions">
+      <button class="age-gate-yes" onclick="ageGateConfirm()">Yes, I'm 21+</button>
+      <button class="age-gate-no" onclick="ageGateDeny()">Exit</button>
+    </div>
+    <p class="age-gate-disclaimer">By entering you confirm your age and agree to our terms. Products are for research use only.</p>
+  </div>
+</div>
+<nav>
+  <div class="nav-brand-name">Femora Co.</div>
+  <div class="nav-center">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="coa.html">Lab Results</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="faq.html">FAQ</a>
+  </div>
+  <button class="cart-pill" onclick="window.location='cart.html'">🛍 Cart <span class="cart-badge" id="cart-count">0</span></button>
+</nav>
+<div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><a href="shop.html">Shop</a><span class="breadcrumb-sep">/</span><span id="bc-name">Product</span></div>
+<div id="product-content"><div class="loading-spinner"><div class="spinner"></div>Loading product...</div></div>
+<div class="toast" id="toast"></div>
+<script src="db.js"></script>
+<script src="chatbot.js"></script>
+<script>
+initAgeGate();
+updateCartCount();
+var qty=1,currentProduct=null,photoList=[],currentPhoto=0;
+var params=new URLSearchParams(window.location.search);
+var pid=parseInt(params.get('id'));
+
+getProducts(function(products){
+  var p=products.find(function(x){return x.id==pid;});
+  if(!p){
+    document.getElementById('product-content').innerHTML='<div class="not-found"><h2>Product Not Found</h2><p>This item may have been removed.</p><br><a href="shop.html" style="color:var(--rose-deep);font-weight:600;">← Back to Shop</a></div>';
+    return;
+  }
+  currentProduct=p;
+  document.getElementById('bc-name').textContent=p.name;
+  document.title=p.name+' — Femora Co.';
+  photoList=(p.images&&p.images.length)?p.images.slice(0,3):(p.image&&p.image.trim()?[p.image]:[]);
+  var hasPhotos=photoList.length>0;
+  var stock=p.stock||0,oos=stock<=0,low=stock>0&&stock<=3;
+  var sc=oos?'out':low?'low':'ok';
+  var st=oos?'Out of stock':low?'Only '+stock+' remaining':stock+' in stock';
+
+  var html='<div class="product-wrap">';
+  // GALLERY COLUMN
+  html+='<div class="gallery-col"><div class="gallery-main" id="gallery-main" style="position:relative;">';
+  if(hasPhotos) html+='<img id="gallery-img" src="'+photoList[0]+'" alt="'+p.name+'">';
+  else html+='<span style="font-size:12rem;">'+p.emoji+'</span>';
+  if(photoList.length>1){
+    html+='<div class="gallery-arrows"><button class="gallery-arrow prev hidden" id="arrow-prev" onclick="changePhoto(-1)">‹</button><button class="gallery-arrow next" id="arrow-next" onclick="changePhoto(1)">›</button></div>';
+    html+='<div class="gallery-dots" id="gallery-dots">';
+    for(var i=0;i<photoList.length;i++) html+='<button class="gallery-dot'+(i===0?' active':'')+'" onclick="goToPhoto('+i+')"></button>';
+    html+='</div>';
+  }
+  html+='</div>';
+  if(photoList.length>1){
+    html+='<div class="gallery-thumbs">';
+    for(var j=0;j<photoList.length;j++) html+='<div class="gallery-thumb'+(j===0?' active':'')+'" onclick="goToPhoto('+j+')" id="thumb-'+j+'"><img src="'+photoList[j]+'" alt="Photo '+(j+1)+'"></div>';
+    html+='</div>';
+  }
+  html+='</div>';
+
+  // INFO COLUMN
+  html+='<div class="info-col">';
+  html+='<div class="product-cat">'+p.category+'</div>';
+  html+='<h1 class="product-name">'+p.name+'</h1>';
+  html+='<div class="product-price">$'+Number(p.price).toFixed(2)+'</div>';
+  html+='<div class="stock-pill '+sc+'">'+st+'</div>';
+  html+='<hr class="divider">';
+  html+='<p class="product-desc">'+p.desc+' This product comes from a small, independently verified batch. Full Certificate of Analysis available on our Lab Results page.</p>';
+  html+='<div class="spec-list">';
+  html+='<div class="spec-row"><span>Category</span><span>'+p.category+'</span></div>';
+  html+='<div class="spec-row"><span>Verified Purity</span><span>≥99%</span></div>';
+  html+='<div class="spec-row"><span>Testing</span><span>Independent Third-Party Lab</span></div>';
+  html+='<div class="spec-row"><span>Certificate</span><span><a href="coa.html" style="color:var(--rose-deep);">View Lab Results →</a></span></div>';
+  html+='</div>';
+  if(!oos){
+    html+='<div class="qty-wrap"><div class="qty-label">Quantity</div>';
+    html+='<div class="qty-controls"><button class="qty-btn" onclick="changeQty(-1)">−</button><div class="qty-num" id="qty-display">1</div><button class="qty-btn" onclick="changeQty(1)">+</button></div></div>';
+  }
+  html+='<div class="cta-row"><button class="back-btn" onclick="history.back()">← Back</button>';
+  if(oos) html+='<button class="atc-btn-lg" disabled>Out of Stock</button>';
+  else html+='<button class="atc-btn-lg" onclick="handleATC()">Add to Cart</button>';
+  html+='</div></div></div>';
+  document.getElementById('product-content').innerHTML=html;
+});
+
+function goToPhoto(idx){
+  if(!photoList.length)return;
+  currentPhoto=idx;
+  var img=document.getElementById('gallery-img');
+  if(img){img.style.opacity='0';setTimeout(function(){img.src=photoList[idx];img.style.opacity='1';},220);}
+  document.querySelectorAll('.gallery-dot').forEach(function(d,i){d.classList.toggle('active',i===idx);});
+  document.querySelectorAll('.gallery-thumb').forEach(function(t,i){t.classList.toggle('active',i===idx);});
+  var prev=document.getElementById('arrow-prev'),next=document.getElementById('arrow-next');
+  if(prev)prev.classList.toggle('hidden',idx===0);
+  if(next)next.classList.toggle('hidden',idx===photoList.length-1);
+}
+function changePhoto(d){var n=currentPhoto+d;if(n>=0&&n<photoList.length)goToPhoto(n);}
+function changeQty(d){
+  if(!currentProduct)return;
+  qty=Math.min(currentProduct.stock||1,Math.max(1,qty+d));
+  var el=document.getElementById('qty-display');if(el)el.textContent=qty;
+}
+function handleATC(){
+  if(!currentProduct)return;
+  getProducts(function(products){
+    var fresh=products.find(function(x){return x.id==currentProduct.id;});
+    if(!fresh||(fresh.stock||0)<=0){showToast('Out of stock.');return;}
+    var cart=getCart();
+    var ex=cart.find(function(i){return i.id==currentProduct.id;});
+    var already=ex?ex.qty:0;
+    if(already+qty>(fresh.stock||0)){showToast('Only '+fresh.stock+' in stock!');return;}
+    for(var i=0;i<qty;i++){
+      var ex2=cart.find(function(x){return x.id==currentProduct.id;});
+      if(ex2)ex2.qty++;
+      else cart.push({id:currentProduct.id,name:currentProduct.name,price:currentProduct.price,emoji:currentProduct.emoji,image:currentProduct.image||'',qty:1});
+    }
+    saveCart(cart);
+    showToast(qty+'× '+currentProduct.name+' added to cart!');
+  });
+}
+</script>
+</body>
+</html>

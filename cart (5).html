@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart — Femora Co.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FDFAF6;--white:#FFFFFF;--blush:#F7E8EC;--rose:#E8A0B0;--rose-deep:#C97088;--gold:#C8A96E;--gold-light:#EDD9A3;--gold-pale:#FAF3E0;--ink:#2A1F24;--ink-light:#5C4A52;--ink-faint:#9A8A90;--border:#EBD9DF;--border-gold:rgba(200,169,110,0.3);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);}
+a{text-decoration:none;color:inherit;}
+nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 3rem;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:900;}
+.nav-brand-name{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;color:var(--ink);}
+.nav-back{font-size:0.78rem;color:var(--ink-faint);font-weight:500;}
+.nav-back:hover{color:var(--rose-deep);}
+.cart-pill{display:flex;align-items:center;gap:0.6rem;background:var(--ink);color:white;padding:0.55rem 1.3rem;border-radius:50px;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;font-family:'Jost',sans-serif;}
+.cart-badge{background:var(--rose);color:var(--ink);border-radius:50px;padding:1px 7px;font-size:0.7rem;font-weight:700;}
+
+.page{display:grid;grid-template-columns:1fr 380px;gap:3rem;padding:3rem 5rem;max-width:1200px;margin:0 auto;}
+.page-title{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--ink);margin-bottom:2rem;}
+
+.cart-item{display:flex;align-items:center;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--border);}
+.item-thumb{width:80px;height:80px;border-radius:14px;background:linear-gradient(135deg,var(--blush),var(--gold-pale));display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;overflow:hidden;}
+.item-thumb img{width:100%;height:100%;object-fit:cover;}
+.item-details{flex:1;}
+.item-name{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.2rem;}
+.item-price{font-size:0.82rem;color:var(--ink-faint);}
+.item-controls{display:flex;align-items:center;gap:0.6rem;margin-top:0.6rem;}
+.qty-btn{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--border);background:transparent;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;}
+.qty-btn:hover{border-color:var(--rose-deep);color:var(--rose-deep);}
+.qty-num{font-size:0.9rem;font-weight:600;min-width:24px;text-align:center;}
+.remove-btn{font-size:0.74rem;color:var(--ink-faint);cursor:pointer;background:none;border:none;font-family:'Jost',sans-serif;margin-left:0.5rem;transition:color 0.15s;}
+.remove-btn:hover{color:#C05050;}
+.item-subtotal{font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;min-width:72px;text-align:right;color:var(--ink);}
+
+.empty-cart{text-align:center;padding:5rem 2rem;color:var(--ink-faint);}
+.empty-cart h2{font-family:'Playfair Display',serif;font-size:2rem;color:var(--ink);margin-bottom:1rem;font-weight:700;}
+
+.order-summary{background:var(--blush);border-radius:20px;padding:2rem;border:1px solid var(--border);position:sticky;top:88px;height:fit-content;}
+.summary-title{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--ink);margin-bottom:1.5rem;font-weight:700;}
+.summary-row{display:flex;justify-content:space-between;font-size:0.88rem;padding:0.5rem 0;color:var(--ink-light);}
+.summary-row.total{border-top:1px solid var(--border);margin-top:0.5rem;padding-top:1rem;font-weight:700;font-size:1.05rem;color:var(--ink);}
+.checkout-btn{width:100%;background:var(--rose-deep);color:white;padding:1rem;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;border:none;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s;margin-top:1.5rem;}
+.checkout-btn:hover{background:var(--ink);transform:translateY(-2px);}
+.continue-link{display:block;text-align:center;margin-top:1rem;font-size:0.8rem;color:var(--ink-faint);}
+.continue-link a{color:var(--rose-deep);}
+.trust-row{display:flex;flex-direction:column;gap:0.6rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border);}
+.trust-item{display:flex;align-items:center;gap:0.6rem;font-size:0.74rem;color:var(--ink-faint);}
+.trust-item::before{content:'✓';color:var(--rose-deep);font-weight:700;}
+
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:9999;background:var(--ink);color:white;border:1px solid rgba(255,255,255,0.1);padding:1rem 1.5rem;border-radius:12px;font-size:0.84rem;font-weight:500;opacity:0;transform:translateY(12px);transition:all 0.3s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateY(0);}
+.age-gate-overlay{position:fixed;inset:0;z-index:99999;background:rgba(253,250,246,0.96);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(12px);}
+.age-gate-overlay.hidden{opacity:0;pointer-events:none;transition:opacity 0.4s;}
+.age-gate-box{background:white;border:1px solid var(--border);border-radius:24px;padding:3.5rem 3rem;max-width:460px;width:90%;text-align:center;box-shadow:0 32px 80px rgba(42,31,36,0.12);}
+.age-gate-brand{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--ink);}
+.age-gate-brand span{color:var(--rose-deep);font-style:italic;}
+.age-gate-sub{font-size:0.85rem;color:var(--ink-faint);line-height:1.75;margin:1.2rem 0 2rem;font-weight:300;}
+.age-gate-actions{display:flex;gap:1rem;}
+.age-gate-yes{flex:1;background:var(--rose-deep);color:white;padding:0.95rem;border:none;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-no{flex:1;background:transparent;color:var(--ink-faint);padding:0.95rem;border:1.5px solid var(--border);border-radius:50px;font-size:0.82rem;font-weight:500;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-disclaimer{font-size:0.68rem;color:var(--ink-faint);margin-top:1.5rem;line-height:1.65;opacity:0.7;}
+@media(max-width:768px){nav{padding:0 1.5rem;}.page{grid-template-columns:1fr;padding:2rem 1.5rem;}.order-summary{position:static;}}
+</style>
+</head>
+<body>
+<div class="age-gate-overlay" id="age-gate">
+  <div class="age-gate-box">
+    <div class="age-gate-brand">Femora <span>Co.</span></div>
+    <p class="age-gate-sub">This site contains products intended for adults. You must be 21 or older to enter.</p>
+    <div class="age-gate-actions">
+      <button class="age-gate-yes" onclick="ageGateConfirm()">Yes, I'm 21+</button>
+      <button class="age-gate-no" onclick="ageGateDeny()">Exit</button>
+    </div>
+    <p class="age-gate-disclaimer">By entering you confirm your age and agree to our terms. Products are for research use only.</p>
+  </div>
+</div>
+<nav>
+  <a href="index.html" class="nav-brand-name">Femora Co.</a>
+  <a href="shop.html" class="nav-back">← Continue Shopping</a>
+  <button class="cart-pill">Cart <span class="cart-badge" id="cart-count">0</span></button>
+</nav>
+<div class="page">
+  <div>
+    <h1 class="page-title">Your Cart</h1>
+    <div id="cart-items"></div>
+  </div>
+  <div>
+    <div class="order-summary">
+      <div class="summary-title">Order Summary</div>
+      <div class="summary-row"><span>Subtotal</span><span id="subtotal">$0.00</span></div>
+      <div class="summary-row"><span>Shipping</span><span>Confirmed after order</span></div>
+      <div class="summary-row total"><span>Total</span><span id="total">$0.00</span></div>
+      <button class="checkout-btn" onclick="window.location='checkout.html'">Proceed to Checkout →</button>
+      <div class="continue-link"><a href="shop.html">← Back to Shop</a></div>
+      <div class="trust-row">
+        <div class="trust-item">Free shipping on all U.S. orders</div>
+        <div class="trust-item">24-hour fulfillment after payment</div>
+        <div class="trust-item">100% satisfaction guarantee</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="db.js"></script>
+<script src="chatbot.js"></script>
+<script>
+initAgeGate();
+updateCartCount();
+renderCart();
+function renderCart(){
+  var cart=getCart(),container=document.getElementById('cart-items');
+  if(!cart.length){
+    container.innerHTML='<div class="empty-cart"><h2>Your cart is empty</h2><p>You haven\'t added anything yet.</p><br><a href="shop.html" style="color:var(--rose-deep);font-weight:600;">Browse the collection →</a></div>';
+    document.getElementById('subtotal').textContent='$0.00';
+    document.getElementById('total').textContent='$0.00';
+    return;
+  }
+  var html='';
+  cart.forEach(function(item,idx){
+    var thumb=(item.image&&item.image.trim())?'<img src="'+item.image+'" style="width:100%;height:100%;object-fit:cover;">':item.emoji;
+    html+='<div class="cart-item"><div class="item-thumb">'+thumb+'</div>';
+    html+='<div class="item-details"><div class="item-name">'+item.name+'</div>';
+    html+='<div class="item-price">$'+Number(item.price).toFixed(2)+' each</div>';
+    html+='<div class="item-controls">';
+    html+='<button class="qty-btn" onclick="updateQty('+idx+',-1)">−</button>';
+    html+='<span class="qty-num">'+item.qty+'</span>';
+    html+='<button class="qty-btn" onclick="updateQty('+idx+',1)">+</button>';
+    html+='<button class="remove-btn" onclick="removeItem('+idx+')">Remove</button>';
+    html+='</div></div>';
+    html+='<div class="item-subtotal">$'+(item.price*item.qty).toFixed(2)+'</div></div>';
+  });
+  container.innerHTML=html;
+  var sub=cart.reduce(function(s,i){return s+i.price*i.qty;},0);
+  document.getElementById('subtotal').textContent='$'+sub.toFixed(2);
+  document.getElementById('total').textContent='$'+sub.toFixed(2);
+}
+function updateQty(idx,d){var cart=getCart();cart[idx].qty=Math.max(1,cart[idx].qty+d);saveCart(cart);renderCart();}
+function removeItem(idx){var cart=getCart();cart.splice(idx,1);saveCart(cart);renderCart();showToast('Item removed.');}
+</script>
+</body>
+</html>

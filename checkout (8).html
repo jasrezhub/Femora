@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — Femora Co.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FDFAF6;--white:#FFFFFF;--blush:#F7E8EC;--rose:#E8A0B0;--rose-deep:#C97088;--gold:#C8A96E;--gold-light:#EDD9A3;--gold-pale:#FAF3E0;--ink:#2A1F24;--ink-light:#5C4A52;--ink-faint:#9A8A90;--border:#EBD9DF;--border-gold:rgba(200,169,110,0.3);--success:#7BBFA0;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);}
+a{text-decoration:none;color:inherit;}
+nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 3rem;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:900;}
+.nav-brand-name{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;color:var(--ink);}
+.nav-back{font-size:0.78rem;color:var(--ink-faint);}
+.nav-back:hover{color:var(--rose-deep);}
+
+.page{display:grid;grid-template-columns:1fr 400px;gap:3rem;padding:3rem 5rem;max-width:1200px;margin:0 auto;}
+.page-title{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--ink);margin-bottom:0.3rem;}
+.page-sub{color:var(--ink-faint);font-size:0.85rem;margin-bottom:2rem;font-weight:300;}
+
+.form-card{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:2rem;margin-bottom:1.5rem;}
+.form-card-title{font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-group{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1rem;}
+.form-group label{font-size:0.68rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-faint);}
+.form-group input,.form-group select{padding:0.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-family:'Jost',sans-serif;font-size:0.9rem;background:var(--cream);color:var(--ink);outline:none;transition:border 0.2s;}
+.form-group input:focus,.form-group select:focus{border-color:var(--rose-deep);background:var(--white);}
+
+.order-panel{background:var(--blush);border-radius:20px;padding:2rem;border:1px solid var(--border);position:sticky;top:88px;height:fit-content;}
+.panel-title{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--ink);margin-bottom:1.5rem;font-weight:700;}
+.summary-item{display:flex;align-items:center;gap:1rem;padding:0.7rem 0;border-bottom:1px solid var(--border);}
+.s-thumb{width:44px;height:44px;background:white;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;overflow:hidden;border:1px solid var(--border);}
+.s-thumb img{width:100%;height:100%;object-fit:cover;}
+.s-name{flex:1;font-size:0.85rem;color:var(--ink-light);}
+.s-qty{font-size:0.72rem;color:var(--ink-faint);}
+.s-price{font-size:0.85rem;font-weight:600;color:var(--ink);}
+.divider{border:none;border-top:1px solid var(--border);margin:1rem 0;}
+.summary-row{display:flex;justify-content:space-between;font-size:0.85rem;padding:0.35rem 0;color:var(--ink-light);}
+.summary-row.total{font-weight:700;font-size:1rem;color:var(--ink);border-top:1px solid var(--border);margin-top:0.5rem;padding-top:1rem;}
+.terms-wrap{display:flex;align-items:flex-start;gap:0.7rem;margin-top:1.2rem;margin-bottom:0.8rem;}
+.terms-wrap input[type="checkbox"]{margin-top:3px;width:16px;height:16px;accent-color:var(--rose-deep);flex-shrink:0;cursor:pointer;}
+.terms-wrap label{font-size:0.74rem;color:var(--ink-faint);line-height:1.6;cursor:pointer;font-weight:300;}
+.terms-wrap label a{color:var(--rose-deep);text-decoration:underline;}
+.place-btn{width:100%;background:var(--rose-deep);color:white;padding:1rem;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;border:none;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s;margin-top:0.5rem;}
+.place-btn:hover{background:var(--ink);transform:translateY(-2px);}
+.place-btn:disabled{background:var(--ink-faint);cursor:not-allowed;transform:none;}
+.panel-note{text-align:center;font-size:0.72rem;color:var(--ink-faint);margin-top:0.8rem;}
+
+/* CONFIRMATION */
+.confirmation{display:none;max-width:620px;margin:0 auto;padding:5rem 2rem 4rem;text-align:center;}
+.confirm-icon{width:72px;height:72px;background:rgba(123,191,160,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:2rem;border:1.5px solid rgba(123,191,160,0.3);}
+.confirm-title{font-family:'Playfair Display',serif;font-size:2.8rem;color:var(--ink);margin-bottom:0.5rem;font-weight:700;}
+.confirm-sub{color:var(--ink-faint);margin-bottom:2rem;font-size:0.9rem;line-height:1.8;font-weight:300;}
+.order-num-box{background:var(--blush);border-radius:16px;padding:1.5rem 2rem;margin:0 auto 2rem;border:1px solid var(--border);}
+.order-num-label{font-size:0.66rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:0.5rem;font-weight:600;}
+.order-num{font-family:'Playfair Display',serif;font-size:2.8rem;color:var(--ink);font-weight:700;letter-spacing:0.08em;}
+.payment-box{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:2rem;margin-bottom:1.5rem;text-align:left;}
+.payment-box h3{font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:0.5rem;}
+.payment-box p{font-size:0.85rem;color:var(--ink-light);line-height:1.8;margin-bottom:1.5rem;font-weight:300;}
+.pay-methods{display:flex;flex-direction:column;gap:0.8rem;}
+.pay-method{display:flex;align-items:center;gap:1rem;background:var(--cream);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;}
+.pay-icon{width:36px;height:36px;background:var(--blush);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.pay-name{font-weight:600;font-size:0.88rem;color:var(--ink);}
+.pay-handle{font-size:0.8rem;color:var(--rose-deep);font-family:monospace;font-weight:600;}
+.pay-note{background:var(--gold-pale);border:1px solid var(--border-gold);border-radius:10px;padding:1rem 1.2rem;font-size:0.8rem;color:var(--ink-light);line-height:1.75;margin-top:1rem;}
+.custom-msg-box{display:none;background:var(--blush);border:1px solid var(--border);border-radius:16px;padding:1.5rem;text-align:left;margin-bottom:1.5rem;}
+.custom-msg-label{font-size:0.66rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rose-deep);font-weight:600;margin-bottom:0.5rem;}
+.confirm-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn-outline-ink{border:1.5px solid var(--border);color:var(--ink-light);padding:0.75rem 1.6rem;border-radius:50px;font-weight:600;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;background:none;font-family:'Jost',sans-serif;transition:all 0.2s;}
+.btn-outline-ink:hover{border-color:var(--ink);color:var(--ink);}
+.btn-fill{background:var(--rose-deep);color:white;padding:0.75rem 1.6rem;border-radius:50px;font-weight:700;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;border:none;font-family:'Jost',sans-serif;transition:all 0.2s;}
+.btn-fill:hover{background:var(--ink);}
+
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:9999;background:var(--ink);color:white;border:1px solid rgba(255,255,255,0.1);padding:1rem 1.5rem;border-radius:12px;font-size:0.84rem;font-weight:500;opacity:0;transform:translateY(12px);transition:all 0.3s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateY(0);}
+.age-gate-overlay{position:fixed;inset:0;z-index:99999;background:rgba(253,250,246,0.96);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(12px);}
+.age-gate-overlay.hidden{opacity:0;pointer-events:none;transition:opacity 0.4s;}
+.age-gate-box{background:white;border:1px solid var(--border);border-radius:24px;padding:3.5rem 3rem;max-width:460px;width:90%;text-align:center;box-shadow:0 32px 80px rgba(42,31,36,0.12);}
+.age-gate-brand{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--ink);}
+.age-gate-brand span{color:var(--rose-deep);font-style:italic;}
+.age-gate-sub{font-size:0.85rem;color:var(--ink-faint);line-height:1.75;margin:1.2rem 0 2rem;font-weight:300;}
+.age-gate-actions{display:flex;gap:1rem;}
+.age-gate-yes{flex:1;background:var(--rose-deep);color:white;padding:0.95rem;border:none;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-no{flex:1;background:transparent;color:var(--ink-faint);padding:0.95rem;border:1.5px solid var(--border);border-radius:50px;font-size:0.82rem;font-weight:500;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-disclaimer{font-size:0.68rem;color:var(--ink-faint);margin-top:1.5rem;line-height:1.65;opacity:0.7;}
+@media(max-width:768px){nav{padding:0 1.5rem;}.page{grid-template-columns:1fr;padding:2rem 1.5rem;}.order-panel{position:static;}.form-row{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="age-gate-overlay" id="age-gate">
+  <div class="age-gate-box">
+    <div class="age-gate-brand">Femora <span>Co.</span></div>
+    <p class="age-gate-sub">This site contains products intended for adults. You must be 21 or older to enter.</p>
+    <div class="age-gate-actions">
+      <button class="age-gate-yes" onclick="ageGateConfirm()">Yes, I'm 21+</button>
+      <button class="age-gate-no" onclick="ageGateDeny()">Exit</button>
+    </div>
+    <p class="age-gate-disclaimer">By entering you confirm your age and agree to our terms. Products are for research use only.</p>
+  </div>
+</div>
+<nav>
+  <a href="index.html" class="nav-brand-name">Femora Co.</a>
+  <a href="cart.html" class="nav-back">← Back to Cart</a>
+</nav>
+<div class="page" id="checkout-page">
+  <div>
+    <h1 class="page-title">Checkout</h1>
+    <p class="page-sub">Fill in your details below and we'll take care of the rest.</p>
+    <div class="form-card">
+      <div class="form-card-title">Contact Information</div>
+      <div class="form-group"><label>Full Name</label><input type="text" id="f-name" placeholder="Jane Smith"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Email</label><input type="email" id="f-email" placeholder="jane@example.com"></div>
+        <div class="form-group"><label>Phone (optional)</label><input type="tel" id="f-phone" placeholder="(555) 000-0000"></div>
+      </div>
+    </div>
+    <div class="form-card">
+      <div class="form-card-title">Shipping Address</div>
+      <div class="form-group"><label>Street Address</label><input type="text" id="f-addr" placeholder="123 Main Street"></div>
+      <div class="form-group"><label>Apt / Suite (optional)</label><input type="text" id="f-addr2" placeholder="Apt 4B"></div>
+      <div class="form-row">
+        <div class="form-group"><label>City</label><input type="text" id="f-city" placeholder="Los Angeles"></div>
+        <div class="form-group"><label>State</label><input type="text" id="f-state" placeholder="CA"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>ZIP Code</label><input type="text" id="f-zip" placeholder="90001"></div>
+        <div class="form-group"><label>Country</label>
+          <select id="f-country"><option>United States</option><option>Canada</option><option>United Kingdom</option><option>Australia</option><option>Other</option></select>
+        </div>
+      </div>
+    </div>
+    <div class="form-card">
+      <div class="form-card-title">Order Notes (optional)</div>
+      <div class="form-group"><label>Special Instructions</label><input type="text" id="f-notes" placeholder="e.g. Leave at door"></div>
+    </div>
+  </div>
+  <div>
+    <div class="order-panel">
+      <div class="panel-title">Your Order</div>
+      <div id="summary-items"></div>
+      <hr class="divider">
+      <div class="summary-row"><span>Subtotal</span><span id="s-subtotal">$0.00</span></div>
+      <div class="summary-row"><span>Shipping</span><span>Confirmed after order</span></div>
+      <div class="summary-row total"><span>Total</span><span id="s-total">$0.00</span></div>
+      <div class="terms-wrap">
+        <input type="checkbox" id="terms-checkbox">
+        <label for="terms-checkbox">I confirm I am 21+ and that all products are for research use only, NOT for human consumption. I agree to the <a href="pdfs/femora-terms.pdf" target="_blank">Terms and Conditions</a> and assume full responsibility for my purchase.</label>
+      </div>
+      <button class="place-btn" id="place-btn" onclick="placeOrder()">Place Order →</button>
+      <p class="panel-note">Payment instructions shown after placing order</p>
+    </div>
+  </div>
+</div>
+
+<div class="confirmation" id="confirmation-page">
+  <div class="confirm-icon">✓</div>
+  <h1 class="confirm-title">Order Placed!</h1>
+  <p class="confirm-sub">Your order has been received. Send payment using the details below, including your order number in the notes.</p>
+  <div class="order-num-box">
+    <div class="order-num-label">Your Order Number</div>
+    <div class="order-num" id="confirm-order-num">#----</div>
+  </div>
+  <div class="payment-box">
+    <h3>Complete Your Payment</h3>
+    <p>Send <strong id="confirm-total">$0.00</strong> to any of the options below. Include your order number <strong id="confirm-order-num-2">#----</strong> in the notes so we can match and process your order.</p>
+    <div class="pay-methods">
+      <div class="pay-method"><div class="pay-icon">💸</div><div><div class="pay-name">Venmo</div><div class="pay-handle">@femora.co</div></div></div>
+      <div class="pay-method"><div class="pay-icon">⚡</div><div><div class="pay-name">Zelle</div><div class="pay-handle">femoracoadmin@proton.me</div></div></div>
+      <div class="pay-method"><div class="pay-icon">💚</div><div><div class="pay-name">CashApp</div><div class="pay-handle">$femoracо</div></div></div>
+    </div>
+    <div class="pay-note">✦ Always include your order number in the payment memo. We'll confirm receipt and ship within 1–3 business days of payment verification.</div>
+  </div>
+  <div class="custom-msg-box" id="custom-msg-box">
+    <div class="custom-msg-label">A note from us</div>
+    <p id="custom-msg-text" style="font-size:0.88rem;line-height:1.8;color:var(--ink-light);margin-top:0.4rem;font-weight:300;"></p>
+  </div>
+  <div class="confirm-actions">
+    <button class="btn-outline-ink" onclick="window.print()">Save / Print</button>
+    <a href="shop.html" class="btn-fill">Continue Shopping</a>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="db.js"></script>
+<script src="chatbot.js"></script>
+<script>
+initAgeGate();
+var cart=getCart();
+if(!cart.length)window.location='cart.html';
+(function(){
+  var c=document.getElementById('summary-items'),html='';
+  cart.forEach(function(i){
+    var thumb=(i.image&&i.image.trim())?'<img src="'+i.image+'" style="width:100%;height:100%;object-fit:cover;">':i.emoji;
+    html+='<div class="summary-item"><div class="s-thumb">'+thumb+'</div><div class="s-name">'+i.name+'<br><span class="s-qty">Qty: '+i.qty+'</span></div><div class="s-price">$'+(i.price*i.qty).toFixed(2)+'</div></div>';
+  });
+  c.innerHTML=html;
+  var sub=cart.reduce(function(s,i){return s+i.price*i.qty;},0);
+  document.getElementById('s-subtotal').textContent='$'+sub.toFixed(2);
+  document.getElementById('s-total').textContent='$'+sub.toFixed(2);
+})();
+function placeOrder(){
+  if(!document.getElementById('terms-checkbox').checked){alert('Please agree to the Terms and Conditions to complete your order.');return;}
+  var name=document.getElementById('f-name').value.trim();
+  var email=document.getElementById('f-email').value.trim();
+  var addr=document.getElementById('f-addr').value.trim();
+  var city=document.getElementById('f-city').value.trim();
+  var state=document.getElementById('f-state').value.trim();
+  var zip=document.getElementById('f-zip').value.trim();
+  var phone=document.getElementById('f-phone').value.trim()||'Not provided';
+  var country=document.getElementById('f-country').value;
+  var notes=document.getElementById('f-notes').value.trim()||'None';
+  if(!name||!email||!addr||!city||!state||!zip){alert('Please fill in all required fields.');return;}
+  if(!/\S+@\S+\.\S+/.test(email)){alert('Please enter a valid email address.');return;}
+  var btn=document.getElementById('place-btn');btn.disabled=true;btn.textContent='Placing order...';
+  var orderNum=generateOrderNumber();
+  var subtotal=cart.reduce(function(s,i){return s+i.price*i.qty;},0);
+  var itemsStr=cart.map(function(i){return i.name+' x'+i.qty+' = $'+(i.price*i.qty).toFixed(2);}).join(', ');
+  depleteStock(cart,function(){
+    saveOrder({orderNumber:orderNum,date:new Date().toISOString(),customer:{name:name,email:email,phone:phone,addr:addr,city:city,state:state,zip:zip,country:country,notes:notes},items:cart,total:subtotal},function(){
+      fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({access_key:'9896efd3-e7f4-4166-9da7-add594ca4d3f',subject:'New Order '+orderNum+" — Femora Co.",from_name:"Femora Co. Orders",replyto:email,order_number:orderNum,date:new Date().toLocaleString(),customer_name:name,customer_email:email,customer_phone:phone,shipping_address:addr+', '+city+', '+state+' '+zip+', '+country,order_notes:notes,items:itemsStr,order_total:'$'+subtotal.toFixed(2)})}).catch(function(){});
+      fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({access_key:'9896efd3-e7f4-4166-9da7-add594ca4d3f',subject:"Your Femora Co. Order "+orderNum+' is Confirmed!',from_name:"Femora Co.",to_email:email,message:'Hi '+name+",\n\nThank you for your order!\n\nOrder Number: "+orderNum+'\nItems: '+itemsStr+'\nTotal: $'+subtotal.toFixed(2)+'\n\nTo complete your purchase, please send $'+subtotal.toFixed(2)+' with your order number in the notes to:\n\nVenmo: @femora.co</script>
+</body>
+</html>

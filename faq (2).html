@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — Femora Co.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FDFAF6;--white:#FFFFFF;--blush:#F7E8EC;--rose:#E8A0B0;--rose-deep:#C97088;--gold:#C8A96E;--gold-light:#EDD9A3;--gold-pale:#FAF3E0;--ink:#2A1F24;--ink-light:#5C4A52;--ink-faint:#9A8A90;--border:#EBD9DF;--border-gold:rgba(200,169,110,0.3);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);}
+a{text-decoration:none;color:inherit;}
+nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 3rem;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:900;}
+.nav-brand-name{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;color:var(--ink);}
+.nav-center{display:flex;gap:2.5rem;}
+.nav-center a{font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);transition:color 0.2s;}
+.nav-center a:hover{color:var(--rose-deep);}
+.cart-pill{display:flex;align-items:center;gap:0.6rem;background:var(--ink);color:white;padding:0.55rem 1.3rem;border-radius:50px;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;font-family:'Jost',sans-serif;transition:all 0.25s;}
+.cart-pill:hover{background:var(--rose-deep);}
+.cart-badge{background:var(--rose);color:var(--ink);border-radius:50px;padding:1px 7px;font-size:0.7rem;font-weight:700;}
+
+/* TWO-COLUMN LAYOUT */
+.faq-layout{display:grid;grid-template-columns:320px 1fr;gap:5rem;padding:5rem;max-width:1200px;margin:0 auto;align-items:start;}
+.faq-sidebar{position:sticky;top:88px;}
+.sidebar-label{font-size:0.68rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:0.8rem;}
+.sidebar-title{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:1.5rem;}
+.sidebar-body{font-size:0.88rem;color:var(--ink-light);line-height:1.85;font-weight:300;margin-bottom:2rem;}
+.sidebar-nav{display:flex;flex-direction:column;gap:0.5rem;}
+.sidebar-nav a{font-size:0.78rem;font-weight:500;color:var(--ink-faint);padding:0.4rem 0;border-bottom:1px solid var(--border);transition:color 0.2s;display:flex;align-items:center;gap:0.5rem;}
+.sidebar-nav a::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--border);transition:background 0.2s;}
+.sidebar-nav a:hover{color:var(--rose-deep);}
+.sidebar-nav a:hover::before{background:var(--rose-deep);}
+.contact-card{background:var(--blush);border-radius:16px;padding:1.5rem;margin-top:2rem;border:1px solid var(--border);}
+.contact-card-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.5rem;}
+.contact-card-body{font-size:0.78rem;color:var(--ink-light);line-height:1.7;font-weight:300;margin-bottom:1rem;}
+.contact-btn{display:inline-block;background:var(--rose-deep);color:white;padding:0.65rem 1.4rem;border-radius:50px;font-size:0.74rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s;}
+.contact-btn:hover{background:var(--ink);}
+
+/* FAQ ITEMS */
+.faq-content{}
+.faq-group{margin-bottom:3rem;}
+.faq-group-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--ink);margin-bottom:1rem;padding-bottom:0.8rem;display:flex;align-items:center;gap:0.8rem;}
+.faq-group-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.faq-item{border-radius:14px;margin-bottom:0.6rem;overflow:hidden;border:1.5px solid var(--border);transition:border-color 0.2s;}
+.faq-item.open{border-color:var(--rose);}
+.faq-question{width:100%;background:var(--white);border:none;padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'Jost',sans-serif;font-size:0.92rem;font-weight:500;color:var(--ink);text-align:left;gap:1rem;transition:background 0.2s;}
+.faq-question:hover{background:var(--blush);}
+.faq-item.open .faq-question{background:var(--blush);color:var(--rose-deep);}
+.faq-icon{font-size:1.2rem;color:var(--ink-faint);transition:transform 0.3s;flex-shrink:0;line-height:1;}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--rose-deep);}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.35s ease;}
+.faq-item.open .faq-answer{max-height:500px;}
+.faq-answer-inner{padding:1.2rem 1.5rem;font-size:0.87rem;color:var(--ink-light);line-height:1.85;background:var(--cream);font-weight:300;}
+.faq-answer-inner a{color:var(--rose-deep);text-decoration:underline;}
+.faq-answer-inner strong{color:var(--ink);font-weight:600;}
+
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:9999;background:var(--ink);color:white;border:1px solid rgba(255,255,255,0.1);padding:1rem 1.5rem;border-radius:12px;font-size:0.84rem;font-weight:500;opacity:0;transform:translateY(12px);transition:all 0.3s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateY(0);}
+.age-gate-overlay{position:fixed;inset:0;z-index:99999;background:rgba(253,250,246,0.96);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(12px);}
+.age-gate-overlay.hidden{opacity:0;pointer-events:none;transition:opacity 0.4s;}
+.age-gate-box{background:white;border:1px solid var(--border);border-radius:24px;padding:3.5rem 3rem;max-width:460px;width:90%;text-align:center;box-shadow:0 32px 80px rgba(42,31,36,0.12);}
+.age-gate-brand{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--ink);}
+.age-gate-brand span{color:var(--rose-deep);font-style:italic;}
+.age-gate-sub{font-size:0.85rem;color:var(--ink-faint);line-height:1.75;margin:1.2rem 0 2rem;font-weight:300;}
+.age-gate-actions{display:flex;gap:1rem;}
+.age-gate-yes{flex:1;background:var(--rose-deep);color:white;padding:0.95rem;border:none;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-no{flex:1;background:transparent;color:var(--ink-faint);padding:0.95rem;border:1.5px solid var(--border);border-radius:50px;font-size:0.82rem;font-weight:500;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-disclaimer{font-size:0.68rem;color:var(--ink-faint);margin-top:1.5rem;line-height:1.65;opacity:0.7;}
+footer{background:var(--ink);color:rgba(255,255,255,0.45);padding:3rem 5rem 2rem;}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1.4rem;color:white;font-weight:700;}
+.footer-links{display:flex;gap:2rem;flex-wrap:wrap;}
+.footer-links a{font-size:0.78rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}
+.footer-links a:hover{color:var(--rose);}
+.footer-copy{font-size:0.72rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.08);}
+@media(max-width:900px){nav{padding:0 1.5rem;}.nav-center{display:none;}.faq-layout{grid-template-columns:1fr;padding:2rem 1.5rem;}.faq-sidebar{position:static;}footer{padding:2rem 1.5rem;}}
+</style>
+</head>
+<body>
+<div class="age-gate-overlay" id="age-gate">
+  <div class="age-gate-box">
+    <div class="age-gate-brand">Femora <span>Co.</span></div>
+    <p class="age-gate-sub">This site contains products intended for adults. You must be 21 or older to enter.</p>
+    <div class="age-gate-actions">
+      <button class="age-gate-yes" onclick="ageGateConfirm()">Yes, I'm 21+</button>
+      <button class="age-gate-no" onclick="ageGateDeny()">Exit</button>
+    </div>
+    <p class="age-gate-disclaimer">By entering you confirm your age and agree to our terms. Products are for research use only.</p>
+  </div>
+</div>
+<nav>
+  <div class="nav-brand-name">Femora Co.</div>
+  <div class="nav-center">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="coa.html">Lab Results</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="faq.html">FAQ</a>
+  </div>
+  <button class="cart-pill" onclick="window.location='cart.html'">🛍 Cart <span class="cart-badge" id="cart-count">0</span></button>
+</nav>
+
+<div class="faq-layout">
+  <div class="faq-sidebar">
+    <div class="sidebar-label">Support</div>
+    <h1 class="sidebar-title">Common Questions</h1>
+    <p class="sidebar-body">Can't find what you're looking for? We're one email away and respond fast.</p>
+    <div class="sidebar-nav">
+      <a href="#products">Products & Quality</a>
+      <a href="#ordering">Ordering & Payment</a>
+      <a href="#shipping">Shipping & Delivery</a>
+      <a href="#returns">Returns & Guarantee</a>
+      <a href="#legal">Legal & Compliance</a>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-title">Still have questions?</div>
+      <p class="contact-card-body">Email us directly — a real person on our team will reply, usually the same day.</p>
+      <a href="mailto:femoracoadmin@proton.me" class="contact-btn">Email Us</a>
+    </div>
+  </div>
+
+  <div class="faq-content">
+    <div class="faq-group" id="products">
+      <div class="faq-group-title">Products & Quality</div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">Are your products independently lab tested?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Yes — every batch is tested by an independent third-party laboratory and must meet a minimum purity of <strong>99%</strong> before we list it. Full Certificates of Analysis are available on our <a href="coa.html">Lab Results page</a> for every product we carry.</div></div>
+      </div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">Why do you keep limited inventory?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">We source in intentionally small batches so our team can personally review every Certificate of Analysis before anything ships. It also means every order you receive comes from a freshly verified batch — nothing sits on a shelf for months.</div></div>
+      </div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">Where can I view lab results and certificates?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">All Certificates of Analysis are on our <a href="coa.html">Lab Results page</a>. You can search by product name or batch number, view them in your browser, or download the PDF. We update the page with every new batch.</div></div>
+      </div>
+    </div>
+
+    <div class="faq-group" id="ordering">
+      <div class="faq-group-title">Ordering & Payment</div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">How do I place an order?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Browse our <a href="shop.html">Shop</a>, add items to your cart, and head to checkout. Enter your contact and shipping details, then click Place Order. You'll receive a unique order number — include that number in your payment notes so we can match and process your order quickly.</div></div>
+      </div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">What payment methods do you accept?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">We accept peer-to-peer payments:<br><br><strong>Venmo:</strong> @femora.co<br><strong>Zelle:</strong> femoracoadmin@proton.me<br><strong>CashApp:</strong> $femorac<br><br>Always include your order number in the payment memo.</div></div>
+      </div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">Do I need to agree to terms before purchasing?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Yes. At checkout you must confirm you are 21 or older, that products are for research purposes only and not for human consumption, and that you agree to our <a href="pdfs/femora-terms.pdf" target="_blank">Terms and Conditions</a>. You must check the box to complete checkout.</div></div>
+      </div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">Can I cancel or change my order?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Email us at <a href="mailto:femoracoadmin@proton.me">femoracoadmin@proton.me</a> as soon as possible. We'll do our best to accommodate changes made before the order is fulfilled, but can't guarantee modifications once processing has begun.</div></div>
+      </div>
+    </div>
+
+    <div class="faq-group" id="shipping">
+      <div class="faq-group-title">Shipping & Delivery</div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">How quickly do orders ship?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Orders are fulfilled within <strong>24 hours</strong> of payment confirmation. Delivery time after fulfillment depends on your location and selected shipping method. You'll receive a confirmation email once your order has shipped.</div></div>
+      </div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">Do you ship outside the U.S.?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">We primarily serve customers within the United States. If you're outside the U.S., email us at <a href="mailto:femoracoadmin@proton.me">femoracoadmin@proton.me</a> before placing an order and we'll let you know what's possible for your location.</div></div>
+      </div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">How do I track my shipment?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Tracking info is sent to the email you provided at checkout once your order ships. If you haven't received it within 48 hours of payment confirmation, reach out at <a href="mailto:femoracoadmin@proton.me">femoracoadmin@proton.me</a> with your order number.</div></div>
+      </div>
+    </div>
+
+    <div class="faq-group" id="returns">
+      <div class="faq-group-title">Returns & Guarantee</div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">What does your satisfaction guarantee cover?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">We stand behind every product we sell. If you're not satisfied with the purity or quality of anything you receive, email <a href="mailto:femoracoadmin@proton.me">femoracoadmin@proton.me</a> and we will make it right — no runarounds.</div></div>
+      </div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">What if my order arrives damaged?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Contact us within 48 hours of delivery with your order number and photos of the damage. We'll arrange a replacement as quickly as possible.</div></div>
+      </div>
+    </div>
+
+    <div class="faq-group" id="legal">
+      <div class="faq-group-title">Legal & Compliance</div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">Is it legal to purchase these products?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">It is your sole responsibility to determine the legality of purchasing and possessing any product in your jurisdiction. Femora Co. makes no representations about legality in any specific location. Please research your local laws before placing an order.</div></div>
+      </div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">Who is eligible to purchase from Femora Co.?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">You must be <strong>21 years of age or older</strong>. By placing an order you represent that you meet this requirement and that you are purchasing for legitimate research purposes only.</div></div>
+      </div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFAQ(this)">Where can I read the full Terms and Conditions?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Our full Terms and Conditions are available <a href="pdfs/femora-terms.pdf" target="_blank">here as a PDF</a>. We strongly encourage all customers to read them before ordering. By purchasing from us, you agree to be bound by these terms in full.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Femora Co.</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="coa.html">Lab Results</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="cart.html">Cart</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2025 Femora Co.. All rights reserved. For research use only.</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="db.js"></script>
+<script src="chatbot.js"></script>
+<script>
+initAgeGate();
+updateCartCount();
+function toggleFAQ(btn){
+  var item=btn.parentElement;
+  var isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(function(el){el.classList.remove('open');});
+  if(!isOpen)item.classList.add('open');
+}
+</script>
+</body>
+</html>

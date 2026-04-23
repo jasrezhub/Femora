@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Reviews — Femora Co.</title>
+<meta name="description" content="Real customer reviews for Femora Co. research compounds. See what researchers are saying.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#FDFAF6;--white:#FFFFFF;--blush:#F7E8EC;--rose:#E8A0B0;
+  --rose-deep:#C97088;--gold:#C8A96E;--gold-light:#EDD9A3;--gold-pale:#FAF3E0;
+  --ink:#2A1F24;--ink-light:#5C4A52;--ink-faint:#9A8A90;
+  --border:#EBD9DF;--border-gold:rgba(200,169,110,0.3);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);}
+a{text-decoration:none;color:inherit;}
+nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 3rem;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:900;}
+.nav-brand-name{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;color:var(--ink);}
+.nav-center{display:flex;gap:2.5rem;}
+.nav-center a{font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);transition:color 0.2s;}
+.nav-center a:hover{color:var(--rose-deep);}
+.cart-pill{display:flex;align-items:center;gap:0.6rem;background:var(--ink);color:white;padding:0.55rem 1.3rem;border-radius:50px;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;font-family:'Jost',sans-serif;transition:all 0.25s;}
+.cart-pill:hover{background:var(--rose-deep);}
+.cart-badge{background:var(--rose);color:var(--ink);border-radius:50px;padding:1px 7px;font-size:0.7rem;font-weight:700;}
+
+/* PAGE HERO */
+.page-hero{background:var(--blush);padding:5rem;display:flex;gap:5rem;align-items:center;}
+.hero-left{flex:1;}
+.hero-label{font-size:0.68rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:0.8rem;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5vw,4.5rem);font-weight:700;color:var(--ink);line-height:1.05;}
+.hero-title em{font-style:italic;color:var(--rose-deep);}
+.hero-body{font-size:0.9rem;color:var(--ink-light);line-height:1.85;font-weight:300;max-width:420px;margin-top:1rem;}
+.hero-right{background:white;border-radius:20px;padding:2.5rem;min-width:320px;border:1px solid var(--border);}
+.hero-right h3{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--ink);margin-bottom:1.5rem;}
+.form-group{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1rem;}
+.form-group label{font-size:0.68rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--ink-faint);}
+.form-group input,.form-group textarea,.form-group select{padding:0.75rem 1rem;border:1.5px solid var(--border);border-radius:10px;font-family:'Jost',sans-serif;font-size:0.9rem;background:var(--cream);color:var(--ink);outline:none;transition:border 0.2s;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--rose-deep);}
+.form-group textarea{resize:vertical;min-height:90px;}
+.submit-btn{width:100%;background:var(--rose-deep);color:white;padding:0.9rem;border:none;border-radius:50px;font-size:0.8rem;font-weight:700;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s;}
+.submit-btn:hover{background:var(--ink);}
+
+/* REVIEWS GRID */
+.reviews-section{padding:5rem;}
+.reviews-section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;flex-wrap:wrap;gap:1rem;}
+.section-label{font-size:0.68rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:0.4rem;}
+.section-title{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--ink);}
+.rating-summary{display:flex;align-items:center;gap:1rem;}
+.rating-big{font-family:'Playfair Display',serif;font-size:3rem;font-weight:700;color:var(--ink);}
+.rating-stars{color:var(--gold);font-size:1.2rem;letter-spacing:2px;}
+.rating-count{font-size:0.78rem;color:var(--ink-faint);}
+
+/* MASONRY-STYLE COLUMNS */
+.reviews-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;align-items:start;}
+.review-card{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:1.8rem;transition:all 0.25s;break-inside:avoid;}
+.review-card:hover{border-color:var(--border-gold);box-shadow:0 12px 32px rgba(42,31,36,0.07);}
+.review-card.featured{background:var(--rose-deep);border-color:var(--rose-deep);}
+.review-card.featured .review-text{color:rgba(255,255,255,0.9);}
+.review-card.featured .review-author{color:rgba(255,255,255,0.6);}
+.review-card.featured .review-stars{color:var(--gold-light);}
+.review-stars{color:var(--gold);font-size:0.85rem;margin-bottom:1rem;letter-spacing:2px;}
+.review-text{font-family:'Playfair Display',serif;font-size:0.95rem;line-height:1.75;color:var(--ink);margin-bottom:1.2rem;font-style:italic;font-weight:400;}
+.review-author{font-size:0.72rem;font-weight:600;color:var(--ink-faint);letter-spacing:0.12em;text-transform:uppercase;}
+
+/* PULLQUOTE IN REVIEWS */
+.reviews-pullquote{background:var(--gold-pale);border:1px solid var(--border-gold);border-radius:18px;padding:2.5rem;text-align:center;margin:3rem 0;}
+.reviews-pullquote p{font-family:'Playfair Display',serif;font-size:1.3rem;font-style:italic;color:var(--ink);line-height:1.6;}
+.reviews-pullquote cite{font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-faint);margin-top:0.8rem;display:block;}
+
+/* UTILS */
+.loading-spinner{display:flex;align-items:center;justify-content:center;padding:4rem;color:var(--ink-faint);gap:0.8rem;font-size:0.85rem;}
+.spinner{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--rose-deep);border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:9999;background:var(--ink);color:white;border:1px solid rgba(255,255,255,0.1);padding:1rem 1.5rem;border-radius:12px;font-size:0.84rem;font-weight:500;opacity:0;transform:translateY(12px);transition:all 0.3s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateY(0);}
+.age-gate-overlay{position:fixed;inset:0;z-index:99999;background:rgba(253,250,246,0.96);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(12px);}
+.age-gate-overlay.hidden{opacity:0;pointer-events:none;transition:opacity 0.4s;}
+.age-gate-box{background:white;border:1px solid var(--border);border-radius:24px;padding:3.5rem 3rem;max-width:460px;width:90%;text-align:center;box-shadow:0 32px 80px rgba(42,31,36,0.12);}
+.age-gate-brand{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--ink);}
+.age-gate-brand span{color:var(--rose-deep);font-style:italic;}
+.age-gate-sub{font-size:0.85rem;color:var(--ink-faint);line-height:1.75;margin:1.2rem 0 2rem;font-weight:300;}
+.age-gate-actions{display:flex;gap:1rem;}
+.age-gate-yes{flex:1;background:var(--rose-deep);color:white;padding:0.95rem;border:none;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-no{flex:1;background:transparent;color:var(--ink-faint);padding:0.95rem;border:1.5px solid var(--border);border-radius:50px;font-size:0.82rem;font-weight:500;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-disclaimer{font-size:0.68rem;color:var(--ink-faint);margin-top:1.5rem;line-height:1.65;opacity:0.7;}
+footer{background:var(--ink);color:rgba(255,255,255,0.45);padding:3rem 5rem 2rem;}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1.4rem;color:white;font-weight:700;}
+.footer-links{display:flex;gap:2rem;flex-wrap:wrap;}
+.footer-links a{font-size:0.78rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}
+.footer-links a:hover{color:var(--rose);}
+.footer-copy{font-size:0.72rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.08);}
+@media(max-width:900px){nav{padding:0 1.5rem;}.nav-center{display:none;}.page-hero{flex-direction:column;padding:3rem 1.5rem;gap:2rem;}.reviews-section{padding:3rem 1.5rem;}.reviews-columns{grid-template-columns:1fr;}footer{padding:2rem 1.5rem;}}
+</style>
+</head>
+<body>
+<div class="age-gate-overlay" id="age-gate">
+  <div class="age-gate-box">
+    <div class="age-gate-brand">Femora <span>Co.</span></div>
+    <p class="age-gate-sub">This site contains products intended for adults. You must be 21 or older to enter.</p>
+    <div class="age-gate-actions">
+      <button class="age-gate-yes" onclick="ageGateConfirm()">Yes, I'm 21+</button>
+      <button class="age-gate-no" onclick="ageGateDeny()">Exit</button>
+    </div>
+    <p class="age-gate-disclaimer">By entering you confirm your age and agree to our terms. Products are for research use only.</p>
+  </div>
+</div>
+<nav>
+  <div class="nav-brand-name">Femora Co.</div>
+  <div class="nav-center">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="coa.html">Lab Results</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="faq.html">FAQ</a>
+  </div>
+  <button class="cart-pill" onclick="window.location='cart.html'">🛍 Cart <span class="cart-badge" id="cart-count">0</span></button>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-left">
+    <div class="hero-label">Community</div>
+    <h1 class="hero-title">What our<br>customers <em>say.</em></h1>
+    <p class="hero-body">We let our customers do the talking. Every review below is unedited and submitted directly through our site — pending approval before going live.</p>
+  </div>
+  <div class="hero-right">
+    <h3>Share Your Experience</h3>
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" id="review-name" placeholder="Jane D.">
+    </div>
+    <div class="form-group">
+      <label>Rating</label>
+      <select id="review-rating">
+        <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+        <option value="4">⭐⭐⭐⭐ Great</option>
+        <option value="3">⭐⭐⭐ Good</option>
+        <option value="2">⭐⭐ Fair</option>
+        <option value="1">⭐ Poor</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Your Review</label>
+      <textarea id="review-text" placeholder="Tell us about your experience..."></textarea>
+    </div>
+    <button class="submit-btn" onclick="submitReview()">Submit Review</button>
+  </div>
+</div>
+
+<section class="reviews-section">
+  <div class="reviews-section-header">
+    <div>
+      <div class="section-label">Testimonials</div>
+      <div class="section-title">Customer Reviews</div>
+    </div>
+    <div class="rating-summary" id="rating-summary" style="display:none;">
+      <div class="rating-big" id="avg-rating">5.0</div>
+      <div>
+        <div class="rating-stars" id="avg-stars">★★★★★</div>
+        <div class="rating-count" id="review-count">— reviews</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="reviews-grid"><div class="loading-spinner"><div class="spinner"></div>Loading reviews...</div></div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Femora Co.</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="coa.html">Lab Results</a>
+      <a href="faq.html">FAQ</a>
+      <a href="cart.html">Cart</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2025 Femora Co.. All rights reserved. For research use only.</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="db.js"></script>
+<script src="chatbot.js"></script>
+<script>
+initAgeGate();
+updateCartCount();
+
+getReviews(function(reviews){
+  var grid=document.getElementById('reviews-grid');
+  if(!reviews.length){
+    grid.innerHTML='<p style="color:var(--ink-faint);padding:2rem;text-align:center;font-family:\'Playfair Display\',serif;font-style:italic;font-size:1.1rem;">No reviews yet — be the first to share your experience.</p>';
+    return;
+  }
+  // Show rating summary
+  var avg=(reviews.reduce(function(s,r){return s+(r.rating||5);},0)/reviews.length).toFixed(1);
+  document.getElementById('avg-rating').textContent=avg;
+  document.getElementById('avg-stars').textContent='★'.repeat(Math.round(avg))+'☆'.repeat(5-Math.round(avg));
+  document.getElementById('review-count').textContent=reviews.length+' verified review'+(reviews.length!==1?'s':'');
+  document.getElementById('rating-summary').style.display='flex';
+
+  // Build 3-column layout
+  var cols=[[],[],[]];
+  reviews.forEach(function(r,i){cols[i%3].push(r);});
+  var html='<div class="reviews-columns">';
+  cols.forEach(function(col,ci){
+    html+='<div>';
+    col.forEach(function(r,ri){
+      var stars='★'.repeat(r.rating||5);
+      var featured=ci===0&&ri===0;
+      html+='<div class="review-card'+(featured?' featured':'')+'" style="margin-bottom:1.5rem;">';
+      html+='<div class="review-stars">'+stars+'</div>';
+      html+='<p class="review-text">"'+r.text+'"</p>';
+      html+='<div class="review-author">— '+r.name+'</div>';
+      html+='</div>';
+      // Insert pullquote after first card in col 1
+      if(ci===1&&ri===0&&col.length>1){
+        html+='<div class="reviews-pullquote" style="margin-bottom:1.5rem;"><p>"Quality you can actually verify — that\'s rare."</p><cite>— The Femora Co. Promise</cite></div>';
+      }
+    });
+    html+='</div>';
+  });
+  html+='</div>';
+  grid.innerHTML=html;
+});
+
+function submitReview(){
+  var name=document.getElementById('review-name').value.trim();
+  var rating=parseInt(document.getElementById('review-rating').value);
+  var text=document.getElementById('review-text').value.trim();
+  if(!name||!text){alert('Please fill in your name and review.');return;}
+  submitReviewPending({name:name,rating:rating,text:text},function(){
+    document.getElementById('review-name').value='';
+    document.getElementById('review-text').value='';
+    showToast('Review submitted — thank you! It will appear after approval.');
+  });
+}
+</script>
+</body>
+</html>

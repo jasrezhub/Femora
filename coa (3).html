@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab Results — Femora Co.</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FDFAF6;--white:#FFFFFF;--blush:#F7E8EC;--rose:#E8A0B0;--rose-deep:#C97088;--gold:#C8A96E;--gold-light:#EDD9A3;--gold-pale:#FAF3E0;--ink:#2A1F24;--ink-light:#5C4A52;--ink-faint:#9A8A90;--border:#EBD9DF;--border-gold:rgba(200,169,110,0.3);}
+*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);}
+a{text-decoration:none;color:inherit;}
+nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 3rem;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:900;}
+.nav-brand-name{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;color:var(--ink);}
+.nav-center{display:flex;gap:2.5rem;}
+.nav-center a{font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);transition:color 0.2s;}
+.nav-center a:hover{color:var(--rose-deep);}
+.cart-pill{display:flex;align-items:center;gap:0.6rem;background:var(--ink);color:white;padding:0.55rem 1.3rem;border-radius:50px;font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;font-family:'Jost',sans-serif;transition:all 0.25s;}
+.cart-pill:hover{background:var(--rose-deep);}
+.cart-badge{background:var(--rose);color:var(--ink);border-radius:50px;padding:1px 7px;font-size:0.7rem;font-weight:700;}
+
+.page-banner{background:var(--blush);padding:4rem 5rem;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;}
+.banner-label{font-size:0.68rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--rose-deep);margin-bottom:0.7rem;}
+.banner-title{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,4vw,3.8rem);font-weight:700;color:var(--ink);line-height:1.1;margin-bottom:0.8rem;}
+.banner-body{font-size:0.88rem;color:var(--ink-light);line-height:1.85;max-width:480px;font-weight:300;}
+.purity-badge{background:white;border-radius:20px;padding:2rem 2.5rem;text-align:center;border:1.5px solid var(--border-gold);min-width:180px;}
+.purity-badge-num{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:700;color:var(--rose-deep);line-height:1;}
+.purity-badge-label{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-faint);margin-top:0.4rem;}
+
+.search-bar-wrap{padding:2rem 5rem;background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1rem;}
+.search-icon{color:var(--ink-faint);font-size:1rem;}
+.coa-search{flex:1;max-width:480px;padding:0.8rem 1rem;border:1.5px solid var(--border);border-radius:50px;font-family:'Jost',sans-serif;font-size:0.9rem;color:var(--ink);outline:none;background:var(--cream);transition:border 0.2s;}
+.coa-search:focus{border-color:var(--rose-deep);background:white;}
+.coa-search::placeholder{color:var(--ink-faint);}
+
+.coa-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;padding:3rem 5rem 6rem;}
+.coa-card{background:var(--white);border:1.5px solid var(--border);border-radius:18px;overflow:hidden;transition:all 0.25s;cursor:pointer;}
+.coa-card:hover{border-color:var(--border-gold);transform:translateY(-4px);box-shadow:0 16px 40px rgba(42,31,36,0.08);}
+.coa-card-preview{height:160px;background:linear-gradient(135deg,var(--blush),var(--gold-pale));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;border-bottom:1px solid var(--border);}
+.pdf-icon{font-size:2.8rem;}
+.pdf-type-label{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rose-deep);font-weight:600;}
+.coa-card-body{padding:1.3rem;}
+.coa-card-name{font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;color:var(--ink);margin-bottom:0.3rem;}
+.coa-card-meta{font-size:0.74rem;color:var(--ink-faint);margin-bottom:1rem;}
+.coa-card-actions{display:flex;gap:0.7rem;}
+.coa-view-btn{flex:1;background:var(--rose-deep);color:white;padding:0.6rem;border-radius:50px;border:none;font-size:0.76rem;font-weight:700;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.08em;text-transform:uppercase;transition:all 0.2s;text-align:center;}
+.coa-view-btn:hover{background:var(--ink);}
+.coa-dl-btn{background:transparent;color:var(--ink-faint);padding:0.6rem 0.9rem;border-radius:50px;border:1.5px solid var(--border);font-size:0.76rem;font-weight:500;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.06em;text-transform:uppercase;transition:all 0.2s;}
+.coa-dl-btn:hover{border-color:var(--rose-deep);color:var(--rose-deep);}
+.coa-empty{text-align:center;padding:6rem 2rem;color:var(--ink-faint);}
+.coa-empty-icon{font-size:3rem;margin-bottom:1rem;opacity:0.3;}
+.coa-empty h2{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--ink-faint);margin-bottom:0.5rem;font-weight:700;}
+.coa-empty p{font-size:0.85rem;line-height:1.75;font-weight:300;}
+
+.loading-spinner{display:flex;align-items:center;justify-content:center;padding:4rem;color:var(--ink-faint);gap:0.8rem;font-size:0.85rem;}
+.spinner{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--rose-deep);border-radius:50%;animation:spin 0.8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+.pdf-modal-overlay{display:none;position:fixed;inset:0;z-index:9999;background:rgba(253,250,246,0.95);backdrop-filter:blur(10px);align-items:center;justify-content:center;flex-direction:column;padding:2rem;}
+.pdf-modal-overlay.open{display:flex;}
+.pdf-modal-header{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:900px;padding:0 1rem 1rem;}
+.pdf-modal-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--ink);font-weight:700;}
+.pdf-modal-actions{display:flex;gap:0.8rem;align-items:center;}
+.pdf-modal-dl{background:var(--rose-deep);color:white;padding:0.5rem 1.2rem;border-radius:50px;font-size:0.76rem;font-weight:700;cursor:pointer;border:none;font-family:'Jost',sans-serif;letter-spacing:0.08em;text-transform:uppercase;}
+.pdf-modal-close{background:var(--blush);border:1.5px solid var(--border);color:var(--ink-faint);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;transition:all 0.2s;}
+.pdf-modal-close:hover{background:var(--rose-deep);color:white;border-color:var(--rose-deep);}
+.pdf-modal-frame{width:100%;max-width:900px;height:75vh;border-radius:16px;overflow:hidden;border:1.5px solid var(--border);}
+.pdf-modal-frame iframe{width:100%;height:100%;border:none;background:white;}
+
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:99998;background:var(--ink);color:white;border:1px solid rgba(255,255,255,0.1);padding:1rem 1.5rem;border-radius:12px;font-size:0.84rem;font-weight:500;opacity:0;transform:translateY(12px);transition:all 0.3s;pointer-events:none;}
+.toast.show{opacity:1;transform:translateY(0);}
+.age-gate-overlay{position:fixed;inset:0;z-index:99999;background:rgba(253,250,246,0.96);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(12px);}
+.age-gate-overlay.hidden{opacity:0;pointer-events:none;transition:opacity 0.4s;}
+.age-gate-box{background:white;border:1px solid var(--border);border-radius:24px;padding:3.5rem 3rem;max-width:460px;width:90%;text-align:center;box-shadow:0 32px 80px rgba(42,31,36,0.12);}
+.age-gate-brand{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--ink);}
+.age-gate-brand span{color:var(--rose-deep);font-style:italic;}
+.age-gate-sub{font-size:0.85rem;color:var(--ink-faint);line-height:1.75;margin:1.2rem 0 2rem;font-weight:300;}
+.age-gate-actions{display:flex;gap:1rem;}
+.age-gate-yes{flex:1;background:var(--rose-deep);color:white;padding:0.95rem;border:none;border-radius:50px;font-size:0.82rem;font-weight:700;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-no{flex:1;background:transparent;color:var(--ink-faint);padding:0.95rem;border:1.5px solid var(--border);border-radius:50px;font-size:0.82rem;font-weight:500;cursor:pointer;font-family:'Jost',sans-serif;letter-spacing:0.1em;text-transform:uppercase;}
+.age-gate-disclaimer{font-size:0.68rem;color:var(--ink-faint);margin-top:1.5rem;line-height:1.65;opacity:0.7;}
+footer{background:var(--ink);color:rgba(255,255,255,0.45);padding:3rem 5rem 2rem;}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
+.footer-brand{font-family:'Playfair Display',serif;font-size:1.4rem;color:white;font-weight:700;}
+.footer-links{display:flex;gap:2rem;flex-wrap:wrap;}
+.footer-links a{font-size:0.78rem;color:rgba(255,255,255,0.45);transition:color 0.2s;}
+.footer-links a:hover{color:var(--rose);}
+.footer-copy{font-size:0.72rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.08);}
+@media(max-width:900px){nav{padding:0 1.5rem;}.nav-center{display:none;}.page-banner{grid-template-columns:1fr;padding:3rem 1.5rem;}.search-bar-wrap{padding:1.5rem;}.coa-grid{padding:2rem 1.5rem;}.pdf-modal-frame{height:60vh;}footer{padding:2rem 1.5rem;}}
+</style>
+</head>
+<body>
+<div class="age-gate-overlay" id="age-gate">
+  <div class="age-gate-box">
+    <div class="age-gate-brand">Femora <span>Co.</span></div>
+    <p class="age-gate-sub">This site contains products intended for adults. You must be 21 or older to enter.</p>
+    <div class="age-gate-actions">
+      <button class="age-gate-yes" onclick="ageGateConfirm()">Yes, I'm 21+</button>
+      <button class="age-gate-no" onclick="ageGateDeny()">Exit</button>
+    </div>
+    <p class="age-gate-disclaimer">By entering you confirm your age and agree to our terms. Products are for research use only.</p>
+  </div>
+</div>
+<nav>
+  <div class="nav-brand-name">Femora Co.</div>
+  <div class="nav-center">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="coa.html">Lab Results</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="faq.html">FAQ</a>
+  </div>
+  <button class="cart-pill" onclick="window.location='cart.html'">🛍 Cart <span class="cart-badge" id="cart-count">0</span></button>
+</nav>
+
+<div class="page-banner">
+  <div>
+    <div class="banner-label">Transparency First</div>
+    <h1 class="banner-title">Lab Results &<br>Certificates</h1>
+    <p class="banner-body">We don't ask you to trust us blindly. Every batch we carry has been independently analyzed. Download or view the full Certificate of Analysis for any product below.</p>
+  </div>
+  <div class="purity-badge">
+    <div class="purity-badge-num">99%+</div>
+    <div class="purity-badge-label">Minimum Purity<br>All Products</div>
+  </div>
+</div>
+
+<div class="search-bar-wrap">
+  <span class="search-icon">🔍</span>
+  <input type="text" class="coa-search" id="coa-search" placeholder="Search by product name or batch..." oninput="renderCOAs()">
+</div>
+
+<div id="coa-container"><div class="loading-spinner"><div class="spinner"></div>Loading certificates...</div></div>
+
+<div class="pdf-modal-overlay" id="pdf-modal">
+  <div class="pdf-modal-header">
+    <div class="pdf-modal-title" id="pdf-modal-title">Certificate of Analysis</div>
+    <div class="pdf-modal-actions">
+      <a id="pdf-modal-dl-link" href="#" target="_blank" download><button class="pdf-modal-dl">Download PDF</button></a>
+      <div class="pdf-modal-close" onclick="closePDFModal()">✕</div>
+    </div>
+  </div>
+  <div class="pdf-modal-frame">
+    <iframe id="pdf-modal-iframe" src="" title="Certificate of Analysis"></iframe>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">Femora Co.</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="faq.html">FAQ</a>
+      <a href="cart.html">Cart</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2025 Femora Co.. All rights reserved. For research use only.</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="db.js"></script>
+<script src="chatbot.js"></script>
+<script>
+initAgeGate();
+updateCartCount();
+var allCOAs=[];
+getCOAs(function(coas){allCOAs=coas;renderCOAs();});
+
+function renderCOAs(){
+  var search=document.getElementById('coa-search').value.trim().toLowerCase();
+  var coas=allCOAs;
+  if(search)coas=coas.filter(function(c){return c.name.toLowerCase().indexOf(search)!==-1||(c.batch&&c.batch.toLowerCase().indexOf(search)!==-1);});
+  var container=document.getElementById('coa-container');
+  if(!coas.length){
+    container.innerHTML='<div class="coa-empty"><div class="coa-empty-icon">📋</div><h2>No Results Found</h2><p>Certificates will appear here as they are uploaded. Check back after each new batch release.</p></div>';
+    return;
+  }
+  var html='<div class="coa-grid">';
+  coas.forEach(function(c){
+    html+='<div class="coa-card" onclick="openPDFModal(\''+c.url.replace(/'/g,"\\'")+'\',\''+c.name.replace(/'/g,"\\'")+'\')"><div class="coa-card-preview"><div class="pdf-icon">📄</div><div class="pdf-type-label">Certificate of Analysis</div></div>';
+    html+='<div class="coa-card-body"><div class="coa-card-name">'+c.name+'</div><div class="coa-card-meta">Batch: '+(c.batch||'N/A')+' &nbsp;·&nbsp; '+(c.date||'')+'</div>';
+    html+='<div class="coa-card-actions"><button class="coa-view-btn" onclick="event.stopPropagation();openPDFModal(\''+c.url.replace(/'/g,"\\'")+'\',\''+c.name.replace(/'/g,"\\'")+'\')">View Report</button>';
+    html+='<a href="'+c.url+'" target="_blank" download onclick="event.stopPropagation()"><button class="coa-dl-btn">↓ Save</button></a></div></div></div>';
+  });
+  html+='</div>';
+  container.innerHTML=html;
+}
+function openPDFModal(url,name){
+  document.getElementById('pdf-modal-title').textContent=name;
+  document.getElementById('pdf-modal-iframe').src=url;
+  document.getElementById('pdf-modal-dl-link').href=url;
+  document.getElementById('pdf-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePDFModal(){
+  document.getElementById('pdf-modal').classList.remove('open');
+  document.getElementById('pdf-modal-iframe').src='';
+  document.body.style.overflow='';
+}
+document.getElementById('pdf-modal').addEventListener('click',function(e){if(e.target===this)closePDFModal();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closePDFModal();});
+</script>
+</body>
+</html>
